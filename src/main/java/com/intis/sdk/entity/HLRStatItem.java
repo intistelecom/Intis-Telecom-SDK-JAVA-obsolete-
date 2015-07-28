@@ -20,6 +20,9 @@ public class HLRStatItem extends HLRResponse {
     @JsonProperty("request_time")
     protected String mRequestTime;
 
+    @JsonProperty("error")
+    protected int mError;
+
     /**
      * @return Message ID
      */
@@ -46,5 +49,12 @@ public class HLRStatItem extends HLRResponse {
      */
     public String getRequestTime() {
         return mRequestTime;
+    }
+
+    /**
+     * @return Code error
+     */
+    public int getError(){
+        return mError;
     }
 }

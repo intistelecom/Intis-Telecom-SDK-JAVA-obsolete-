@@ -8,17 +8,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MessageSendingSuccess extends MessageSendingResult {
 
-    @JsonProperty("messageId")
     protected String mMessageId;
 
-    @JsonProperty("cost")
     protected float mCost;
 
-    @JsonProperty("currency")
     protected String mCurrency;
 
-    @JsonProperty("messageCount")
     protected int mMessagesCount;
+
+    public MessageSendingSuccess() {
+        setIsOk(true);
+    }
 
     /**
      * @return Message ID
@@ -48,9 +48,31 @@ public class MessageSendingSuccess extends MessageSendingResult {
         return mMessagesCount;
     }
 
-    //    public MessageSendingSuccess()
-//    : base()
-//    {
-//        IsOk = true;
-//    }
+    /**
+     * @param mMessageId - Message ID
+     */
+    public void setMessageId(String mMessageId) {
+        this.mMessageId = mMessageId;
+    }
+
+    /**
+     * @param mCost - Price for message
+     */
+    public void setCost(float mCost) {
+        this.mCost = mCost;
+    }
+
+    /**
+     * @param mCurrency - Name of currency
+     */
+    public void setCurrency(String mCurrency) {
+        this.mCurrency = mCurrency;
+    }
+
+    /**
+     * @param mMessagesCount - Number of message parts
+     */
+    public void setMessagesCount(int mMessagesCount) {
+        this.mMessagesCount = mMessagesCount;
+    }
 }

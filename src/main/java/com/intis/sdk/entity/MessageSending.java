@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MessageSending {
 
     @JsonProperty("phone")
-    protected long mPhone;
+    protected String mPhone;
 
     @JsonProperty("id_sms")
     protected String mMessageId;
@@ -26,10 +26,26 @@ public class MessageSending {
     @JsonProperty("error")
     protected int mError;
 
+    @JsonProperty("sender")
+    protected String mSender;
+
+    @JsonProperty("network")
+    protected String mNetwork;
+
+    @JsonProperty("ported")
+    protected int mPorted;
+
+    /**
+     * @param phone phone
+     */
+    public void setPhone(String phone){
+        mPhone = phone;
+    }
+
     /**
      * @return Phone number
      */
-    public long getPhone() {
+    public String getPhone() {
         return mPhone;
     }
 
@@ -66,5 +82,23 @@ public class MessageSending {
      */
     public int getError() {
         return mError;
+    }
+
+    /**
+     * @return Sender
+     */
+    public String getSender(){
+        return mSender;
+    }
+
+    /**
+     * @return operator
+     */
+    public String getNetwork(){
+        return mNetwork;
+    }
+
+    public int getPorted(){
+        return mPorted;
     }
 }

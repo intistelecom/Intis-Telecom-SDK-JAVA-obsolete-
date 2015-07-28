@@ -28,7 +28,7 @@ public abstract class AClient {
     public String getContent(String scriptName, Map<String, String> parameters) {
         Map<String, String> allParameters = getParameters(parameters);
         String url = mApiHost + scriptName + ".php?" + urlEncodeUTF8(allParameters);
-
+System.out.println(url);
         String result = getContentFromApi(url);
 
         try {
@@ -177,7 +177,7 @@ public abstract class AClient {
 
         try {
             map = mapper.readValue(result, new TypeReference<HashMap<String, Object>>() {});
-            if(map.containsKey("error")) {
+            if(map.size() == 1 && map.containsKey("error")) {
                 Object code = map.get("error");
                 Integer code1 = Integer.parseInt(code.toString());
                 throw new SDKException(code1);

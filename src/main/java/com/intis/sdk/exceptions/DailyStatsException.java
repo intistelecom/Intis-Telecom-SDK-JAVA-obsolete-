@@ -1,7 +1,9 @@
 package com.intis.sdk.exceptions;
 
-/**
- * Created by Sergey on 27.07.2015.
- */
-public class DailyStatsException {
+import java.util.Map;
+
+public class DailyStatsException extends SDKSerializationException{
+    public DailyStatsException(Map<String, String> parameters, Throwable ex){
+        super(parameters, ex);
+    };
 }

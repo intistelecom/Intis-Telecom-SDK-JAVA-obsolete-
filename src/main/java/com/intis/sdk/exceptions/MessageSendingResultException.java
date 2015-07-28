@@ -1,7 +1,9 @@
 package com.intis.sdk.exceptions;
 
-/**
- * Created by Sergey on 27.07.2015.
- */
-public class MessageSendingResultException {
+import java.util.Map;
+
+public class MessageSendingResultException extends SDKSerializationException{
+    public MessageSendingResultException(Map<String, String> parameters, Throwable ex){
+        super(parameters, ex);
+    };
 }

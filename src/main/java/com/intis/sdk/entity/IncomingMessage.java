@@ -24,6 +24,13 @@ public class IncomingMessage {
     protected String mText;
 
     /**
+     * @param messageId - Message ID
+     */
+    public void setMessageId(String messageId){
+        mMessageId = messageId;
+    }
+
+    /**
      * @return Message ID
      */
     public String getMessageId() {

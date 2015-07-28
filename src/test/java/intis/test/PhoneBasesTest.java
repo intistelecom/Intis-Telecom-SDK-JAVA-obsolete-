@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class PhoneBasesTest {
 
     @Test
-    public void testGetBalance() {
+    public void testGetPhoneBase() {
 
         String login = "rso";
         String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";

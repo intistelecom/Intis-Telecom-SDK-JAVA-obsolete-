@@ -1,7 +1,9 @@
 package com.intis.sdk.exceptions;
 
-/**
- * Created by Sergey on 27.07.2015.
- */
-public class StopListException {
+import java.util.Map;
+
+public class StopListException extends SDKSerializationException{
+    public StopListException(Map<String, String> parameters, Throwable ex){
+        super(parameters, ex);
+    };
 }

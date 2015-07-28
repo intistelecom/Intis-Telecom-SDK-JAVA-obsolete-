@@ -17,6 +17,12 @@ public class StopList {
     protected String mDescription;
 
     /**
+     * @param id - Stop list ID
+     */
+    public void setId(long id){
+        mId = id;
+    }
+    /**
      * @return Stop list ID
      */
     public long getId() {

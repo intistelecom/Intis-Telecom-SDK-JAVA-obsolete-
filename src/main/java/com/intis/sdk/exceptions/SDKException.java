@@ -39,6 +39,12 @@ public class SDKException extends Exception {
         messages.put(27, "There are no valid numbers");
         messages.put(28, "Initial date is not specified");
         messages.put(29, "Final date is not specified");
+        messages.put(30, "Wrong or empty date (format: YYYY-MM-DD)");
+        messages.put(31, "Unavailable direction");
+        messages.put(32, "Low balance");
+        messages.put(33, "Wrong phone number");
+        messages.put(34, "Phone is in the global stop-list");
+        messages.put(35, "Billing failed");
 
         String message = messages.get(code);
 

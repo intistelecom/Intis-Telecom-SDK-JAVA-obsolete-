@@ -8,16 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MessageSendingResult {
 
-    @JsonProperty("phone")
-    protected long mPhone;
+    protected String mPhone;
 
-    @JsonProperty("isOk")
     protected boolean mIsOk;
 
     /**
      * @return Phone number
      */
-    public long getPhone() {
+    public String getPhone() {
         return mPhone;
     }
 
@@ -26,5 +24,19 @@ public class MessageSendingResult {
      */
     public boolean isOk() {
         return mIsOk;
+    }
+
+    /**
+     * @param mPhone - Phone number
+     */
+    public void setPhone(String mPhone) {
+        this.mPhone = mPhone;
+    }
+
+    /**
+     * @param mIsOk - Success result
+     */
+    public void setIsOk(boolean mIsOk) {
+        this.mIsOk = mIsOk;
     }
 }
