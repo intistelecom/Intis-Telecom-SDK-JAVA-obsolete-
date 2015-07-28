@@ -20,13 +20,13 @@ public interface IClient {
      * Getting user lists
      * @return PhoneBase[]
      */
-    ArrayList<PhoneBase> GetPhoneBases();
+    ArrayList<PhoneBase> getPhoneBases();
 
     /**
      * Get sender names
      * @return Originator[]
      */
-    ArrayList<Originator> GetOriginators();
+    ArrayList<Originator> getOriginators();
 
     /**
      * Get phone numbers from list
@@ -34,14 +34,14 @@ public interface IClient {
      * @param page - Page number
      * @return PhoneBaseItem[]
      */
-    ArrayList<PhoneBaseItem> GetPhoneBaseItems(int baseId, int page);
+    ArrayList<PhoneBaseItem> getPhoneBaseItems(int baseId, int page);
 
     /**
      * Get information of message status
      * @param messageId - Message ID
      * @return PhoneBaseItem[]
      */
-    ArrayList<DeliveryStatus> GetDeliveryStatus(String[] messageId);
+    ArrayList<DeliveryStatus> getDeliveryStatus(String[] messageId);
 
     /**
      * Send a message
@@ -50,27 +50,27 @@ public interface IClient {
      * @param text - SMS text
      * @return Message ID
      */
-    ArrayList<MessageSendingResult> SendMessage(long[] phone, String originator, String text);
+    ArrayList<MessageSendingResult> gendMessage(long[] phone, String originator, String text);
 
     /**
      * Search of number in stop list
      * @param phone - Phone number
      * @return StopList
      */
-    StopList CheckStopList(long phone);
+    StopList checkStopList(long phone);
 
     /**
      * Add number to stop list
      * @param phone - Phone number
      * @return ID
      */
-    long AddToStopList(long phone);
+    long addToStopList(long phone);
 
     /**
      * Get list of templates
      * @return Template[]
      */
-    ArrayList<Template> GetTemplates();
+    ArrayList<Template> getTemplates();
 
     /**
      * Add a template
@@ -78,7 +78,7 @@ public interface IClient {
      * @param template - Template
      * @return ID
      */
-    long AddTemplate(String title, String template);
+    long addTemplate(String title, String template);
 
     /**
      * Get statistics for a month by days
@@ -86,14 +86,14 @@ public interface IClient {
      * @param month - Month
      * @return DailyStats[]
      */
-    ArrayList<DailyStats> GetDailyStatsByMonth(int year, int month);
+    ArrayList<DailyStats> getDailyStatsByMonth(int year, int month);
 
     /**
      * HLR request
      * @param phone - Phone number
      * @return HLRResponse[]
      */
-    ArrayList<HLRResponse> MakeHlrRequest(long[] phone);
+    ArrayList<HLRResponse> makeHlrRequest(long[] phone);
 
     /**
      * Statistics of HLR requests
@@ -101,19 +101,19 @@ public interface IClient {
      * @param to - Final date in the format YYYY-MM-DD
      * @return HLRStatItem[]
      */
-    ArrayList<HLRStatItem> GetHlrStats(String from, String to);
+    ArrayList<HLRStatItem> getHlrStats(String from, String to);
 
     /**
      * Get operator
      * @param phone - Phone number
      * @return Network
      */
-    Network GetNetworkByPhone(long phone);
+    Network getNetworkByPhone(long phone);
 
     /**
      * Get incoming SMS
      * @param date - Date in the format YYYY-MM-DD
      * @return IncomingMessage[]
      */
-    ArrayList<IncomingMessage> GetIncomingMessages(String date);
+    ArrayList<IncomingMessage> getIncomingMessages(String date);
 }

@@ -9,14 +9,8 @@ import java.util.Map;
  */
 public class DailyStats {
 
-    /**
-     * day for statistics output
-     */
     protected String mDay;
 
-    /**
-     * variable for storing statistics
-     */
     protected List<Stats> mStats;
 
     public void DailyStats(Map<String, Map<String, Stats[]>[]> obj)
@@ -39,19 +33,17 @@ public class DailyStats {
 //        Stats = stats;
     }
 
+    /**
+     * @return variable for storing statistics
+     */
     public List<Stats> getStats() {
         return mStats;
     }
 
-    public void setStats(List<Stats> mStats) {
-        this.mStats = mStats;
-    }
-
+    /**
+     * @return day for statistics output
+     */
     public String getDay() {
         return mDay;
-    }
-
-    public void setDay(String mDay) {
-        this.mDay = mDay;
     }
 }

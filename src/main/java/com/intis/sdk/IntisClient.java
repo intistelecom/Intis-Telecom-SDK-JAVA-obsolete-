@@ -1,12 +1,11 @@
 package com.intis.sdk;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intis.sdk.entity.*;
 import com.intis.sdk.exceptions.*;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +25,7 @@ public class IntisClient extends AClient {
         Map<String, String> parameters = new HashMap<String, String>();
         String content = getContent("balance", parameters);
 
-        try
-        {
+        try {
             ObjectMapper mapper = new ObjectMapper();
             Balance balance = mapper.readValue(content, Balance.class);
 
@@ -38,197 +36,165 @@ public class IntisClient extends AClient {
         }
     }
 
-//    public List<PhoneBase> GetPhoneBases()
-//    {
-//        Map<String, String> parameters = new HashMap<String, String>();
-//        String content = getContent("base", parameters);
-//
-//        List<PhoneBase> bases = new List<PhoneBase>();
-//
-//        var settings = new DataContractJsonSerializerSettings
-//        {
-//            UseSimpleDictionaryFormat = true
-//        };
-//
-//        try
-//        {
-//            var serializer = new DataContractJsonSerializer(typeof(Dictionary<Int64, PhoneBase>), settings);
-//            var phoneBases = serializer.ReadObject(content) as Dictionary<Int64, PhoneBase>;
-//            if (phoneBases == null)
-//                return bases;
-//
-//            foreach (var one in phoneBases)
-//            {
-//                var oneBase = one.Value;
-//                oneBase.BaseId = one.Key;
-//                bases.Add(oneBase);
-//            }
-//
-//            return bases;
-//        }
-//        catch (SerializationException ex)
-//        {
-//            throw new PhoneBasesException(parameters, ex);
-//        }
-//    }
-//
-//    public List<Originator> GetOriginators()
-//    {
-//        var parameters = new NameValueCollection();
-//        var content = GetContent("senders", parameters);
-//
-//        var originators = new List<Originator>();
-//        try
-//        {
-//            var serializer = new JavaScriptSerializer();
-//            var list = serializer.Deserialize<Dictionary<string, string>>(content);
-//
-//            originators.AddRange(list.Select(one => new Originator(one.Key, one.Value)));
-//
-//            return originators;
-//        }
-//        catch (SerializationException ex)
-//        {
-//            throw new OriginatorException(parameters, ex);
-//        }
-//    }
-//
-//    public List<PhoneBaseItem> GetPhoneBaseItems(int baseId, int page = 1)
-//    {
-//        var parameters = new NameValueCollection()
-//        {
-//            {"base", baseId.ToString()},
-//            {"page", page.ToString()}
-//        };
-//
-//        var content = GetStreamContent("phone", parameters);
-//        var phoneBaseItem = new List<PhoneBaseItem>();
-//
-//        var settings = new DataContractJsonSerializerSettings
-//        {
-//            UseSimpleDictionaryFormat = true
-//        };
-//
-//        try
-//        {
-//            var serializer = new DataContractJsonSerializer(typeof(Dictionary<Int64, PhoneBaseItem>), settings);
-//            var items = serializer.ReadObject(content) as Dictionary<Int64, PhoneBaseItem>;
-//
-//            if (items == null)
-//                return phoneBaseItem;
-//
-//            foreach (var one in items)
-//            {
-//                var item = one.Value;
-//                item.Phone = one.Key;
-//                phoneBaseItem.Add(item);
-//            }
-//
-//            return phoneBaseItem;
-//        }
-//        catch (SerializationException ex)
-//        {
-//            throw new PhoneBaseItemException(parameters, ex);
-//        }
-//    }
-//
-//    public List<DeliveryStatus> GetDeliveryStatus(string[] messageId)
-//    {
-//        var parameters = new NameValueCollection()
-//        {
-//            {"state", String.Join(",", messageId)}
-//        };
-//
-//        var content = GetStreamContent("status", parameters);
-//
-//        var deliveryStatus = new List<DeliveryStatus>();
-//
-//        var settings = new DataContractJsonSerializerSettings
-//        {
-//            UseSimpleDictionaryFormat = true
-//        };
-//
-//        try
-//        {
-//            var serializer = new DataContractJsonSerializer(typeof(Dictionary<string, DeliveryStatus>), settings);
-//            var items = serializer.ReadObject(content) as Dictionary<string, DeliveryStatus>;
-//
-//            if (items == null)
-//                return deliveryStatus;
-//
-//            foreach (var one in items)
-//            {
-//                var item = one.Value;
-//                item.MessageId = one.Key;
-//                deliveryStatus.Add(item);
-//            }
-//
-//            return deliveryStatus;
-//        }
-//        catch (SerializationException ex)
-//        {
-//            throw new DeliveryStatusException(parameters, ex);
-//        }
-//    }
-//
-//    public List<MessageSendingResult> SendMessage(Int64[] phone, string originator, string text)
-//    {
-//        var parameters = new NameValueCollection()
-//        {
-//            {"phone", String.Join(",", phone.Select(p => p.ToString()))},
-//            {"sender", originator},
-//            {"text", text}
-//        };
-//
-//        var content = GetStreamContent("send", parameters);
-//
-//        var settings = new DataContractJsonSerializerSettings
-//        {
-//            UseSimpleDictionaryFormat = true
-//        };
-//
-//        var messages = new List<MessageSendingResult>();
-//
-//        try
-//        {
-//            var serializer = new DataContractJsonSerializer(typeof(Dictionary<Int64, MessageSending>[]), settings);
-//            var items = serializer.ReadObject(content) as Dictionary<Int64, MessageSending>[];
-//
-//            if (items == null)
-//                return messages;
-//
-//            foreach (var one in items)
-//            {
-//                var item = one.First().Value;
-//                item.Phone = one.First().Key;
-//                if(item.Error == 0)
-//                {
-//                    var success = new MessageSendingSuccess{
-//                    Phone = item.Phone,
-//                            MessageId = item.MessageId,
-//                            MessagesCount = item.MessagesCount,
-//                            Cost = item.Cost,
-//                            Currency = item.Currency
-//                };
-//                    messages.Add(success);
-//                }
-//                else
-//                {
-//                    var error = new MessageSendingError{
-//                    Phone = item.Phone,
-//                            Code = item.Error
-//                };
-//                    messages.Add(error);
-//                }
-//            }
-//
-//            return messages;
-//        }
-//        catch (SerializationException ex)
-//        {
-//            throw new MessageSendingResultException(parameters, ex);
-//        }
-//    }
+    public List<PhoneBase> getPhoneBases() throws PhoneBasesException
+    {
+        Map<String, String> parameters = new HashMap<String, String>();
+        String content = getContent("base", parameters);
+
+        List<PhoneBase> bases = new ArrayList<PhoneBase>();
+
+        try {
+            Map<Long, PhoneBase> map;
+            ObjectMapper mapper = new ObjectMapper();
+
+            map = mapper.readValue(content, new TypeReference<HashMap<Long, PhoneBase>>() {});
+
+            for(Map.Entry<Long, PhoneBase> entry : map.entrySet()) {
+                Long baseId = entry.getKey();
+                PhoneBase phoneBase = entry.getValue();
+                phoneBase.setBaseId(baseId);
+                bases.add(phoneBase);
+            }
+
+            return bases;
+        }catch (Exception e) {
+            throw new PhoneBasesException(parameters, e);
+        }
+    }
+
+    public List<Originator> getOriginators() throws OriginatorException
+    {
+        Map<String, String> parameters = new HashMap<String, String>();
+        String content = getContent("senders", parameters);
+
+        List<Originator> originators = new ArrayList<Originator>();
+
+        try {
+            Map<String, String> map;
+            ObjectMapper mapper = new ObjectMapper();
+
+            map = mapper.readValue(content, new TypeReference<HashMap<String, String>>() {});
+
+            for(Map.Entry<String, String> entry : map.entrySet()) {
+                originators.add(new Originator(entry.getKey(), entry.getValue()));
+            }
+
+            return originators;
+        }
+        catch (Exception e) {
+            throw new OriginatorException(parameters, e);
+        }
+    }
+
+    public List<PhoneBaseItem> GetPhoneBaseItems(Integer baseId, Integer page) throws PhoneBaseItemException
+    {
+        if(page.equals(null))
+            page = 1;
+
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("base", baseId.toString());
+        parameters.put("page", page.toString());
+        String content = getContent("phone", parameters);
+
+        List<PhoneBaseItem> phoneBaseItems = new ArrayList<PhoneBaseItem>();
+
+        try {
+            Map<Long, PhoneBaseItem> map;
+            ObjectMapper mapper = new ObjectMapper();
+
+            map = mapper.readValue(content, new TypeReference<HashMap<Long, PhoneBaseItem>>() {});
+
+            for(Map.Entry<Long, PhoneBaseItem> entry : map.entrySet()) {
+                Long phone = entry.getKey();
+                PhoneBaseItem phoneBase = entry.getValue();
+                phoneBase.setPhone(phone);
+                phoneBaseItems.add(phoneBase);
+            }
+
+            return phoneBaseItems;
+        }
+        catch (Exception ex) {
+            throw new PhoneBaseItemException(parameters, ex);
+        }
+    }
+
+    public List<DeliveryStatus> GetDeliveryStatus(String[] messageId) throws DeliveryStatusException
+    {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("state", String.join(",", messageId));
+        String content = getContent("status", parameters);
+
+        List<DeliveryStatus> deliveryStatus = new ArrayList<DeliveryStatus>();
+
+        try {
+            Map<String, DeliveryStatus> map;
+            ObjectMapper mapper = new ObjectMapper();
+
+            map = mapper.readValue(content, new TypeReference<HashMap<String, DeliveryStatus>>() {});
+
+            for(Map.Entry<String, DeliveryStatus> entry : map.entrySet()) {
+                String MessageId = entry.getKey();
+                DeliveryStatus item = entry.getValue();
+                item.setMessageId(MessageId);
+                deliveryStatus.add(item);
+            }
+
+            return deliveryStatus;
+        }
+        catch (Exception ex) {
+            throw new DeliveryStatusException(parameters, ex);
+        }
+    }
+
+    public List<MessageSendingResult> SendMessage(Long[] phone, String originator, String text) throws MessageSendingResultException
+    {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("phone", String.join(",", phone.toString()));
+        parameters.put("sender", originator);
+        parameters.put("text", text);
+        String content = getContent("send", parameters);
+
+        List<MessageSendingResult> messages = new ArrayList<MessageSendingResult>();
+
+        try
+        {
+            var serializer = new DataContractJsonSerializer(typeof(Dictionary<Int64, MessageSending>[]), settings);
+            var items = serializer.ReadObject(content) as Dictionary<Int64, MessageSending>[];
+
+            if (items == null)
+                return messages;
+
+            foreach (var one in items)
+            {
+                var item = one.First().Value;
+                item.Phone = one.First().Key;
+                if(item.Error == 0)
+                {
+                    var success = new MessageSendingSuccess{
+                    Phone = item.Phone,
+                            MessageId = item.MessageId,
+                            MessagesCount = item.MessagesCount,
+                            Cost = item.Cost,
+                            Currency = item.Currency
+                };
+                    messages.Add(success);
+                }
+                else
+                {
+                    var error = new MessageSendingError{
+                    Phone = item.Phone,
+                            Code = item.Error
+                };
+                    messages.Add(error);
+                }
+            }
+
+            return messages;
+        }
+        catch (Exception ex) {
+            throw new MessageSendingResultException(parameters, ex);
+        }
+    }
 //
 //    public StopList CheckStopList(Int64 phone)
 //    {

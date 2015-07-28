@@ -8,32 +8,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class DeliveryStatus {
 
-    /**
-     * Message ID
-     */
     @JsonProperty("messageId")
     protected String mMessageId;
 
-    /**
-     * Message ID
-     */
     @JsonProperty("status")
     protected String mMessageStatus;
 
-    /**
-     * Message ID
-     */
     @JsonProperty("time")
     protected String mCreatedAt;
 
+    /**
+     * @return Message ID
+     */
     public String getMessageId() {
         return mMessageId;
     }
 
+    public void setMessageId(String messageId){
+        mMessageId = messageId;
+    }
+
+    /**
+     * @return Status of message
+     */
     public String getMessageStatus() {
         return mMessageStatus;
     }
 
+    /**
+     * @return Message ID
+     */
     public String getCreatedAt() {
         return mCreatedAt;
     }

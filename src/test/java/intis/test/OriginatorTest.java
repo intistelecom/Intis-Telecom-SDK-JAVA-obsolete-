@@ -5,9 +5,12 @@ import com.intis.sdk.IntisClient;
 import com.intis.sdk.entity.*;
 import com.intis.sdk.exceptions.*;
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.junit.Assert.*;
 
-public class BalanceTest {
+public class OriginatorTest {
 
     @Test
     public void testGetBalance() {
@@ -19,16 +22,16 @@ public class BalanceTest {
         IntisClient client = new IntisClient(login, apiKey, apiHost);
 
         try {
-            Balance balance = client.getBalance();
-            String amount = balance.getAmount();
-            String currency = balance.getCurrency();
+            List<Originator> bases = client.getOriginators();
 
-            boolean aTrue = amount.isEmpty();
-            assertFalse(aTrue);
-            boolean cTrue = currency.isEmpty();
-            assertFalse(cTrue);
+            for (Originator item : bases) {
+                System.out.print(item.getName());
+                System.out.print(item.getState());
+                System.out.print(" - ");
+            }
+            assertTrue(bases.size() > 0);
         }
-        catch (BalanceException e)
+        catch (OriginatorException e)
         {
             e.printStackTrace();
         }

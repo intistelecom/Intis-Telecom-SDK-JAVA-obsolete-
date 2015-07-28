@@ -25,16 +25,6 @@ public abstract class AClient {
      */
     protected String mApiHost;
 
-//    public MemoryStream getStreamContent(String scriptName, Map<String, String> parameters)
-//    {
-//        var result = GetContent(scriptName, parameters);
-//
-//        var byteArray = Encoding.UTF8.GetBytes(result);
-//        var stream = new MemoryStream(byteArray);
-//
-//        return stream;
-//    }
-
     public String getContent(String scriptName, Map<String, String> parameters) {
         Map<String, String> allParameters = getParameters(parameters);
         String url = mApiHost + scriptName + ".php?" + urlEncodeUTF8(allParameters);
@@ -109,7 +99,7 @@ public abstract class AClient {
      */
     private String getSignature(Map<String, String> parameters) {
         Collection<String> str = parameters.values();
-        String strParameters = StringUtils.join(str, "");
+        String strParameters = StringUtils.join(str, "") + mApiKey;
 
         return MD5(strParameters);
     }
@@ -155,13 +145,13 @@ public abstract class AClient {
      * Getting data from API.
      */
     private String getContentFromApi(String link) {
-        String result = null;
+        String result = "";
         try {
             URL url = new URL(link);
             InputStream is = url.openConnection().getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-            String line = null;
+            String line = "";
             while ((line = reader.readLine()) != null) {
                 result = result + line;
             }
@@ -182,20 +172,18 @@ public abstract class AClient {
             throw new SDKException(0);
         }
 
-        if (result.substring(0, 8) != "{\"error\"")
-            return;
-
-        Map<String, Integer> map;
+        Map<String, Object> map;
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            map = mapper.readValue(result, new TypeReference<HashMap<String, Integer>>() {});
-            System.out.println(map);
-
+            map = mapper.readValue(result, new TypeReference<HashMap<String, Object>>() {});
+            if(map.containsKey("error")) {
+                Object code = map.get("error");
+                Integer code1 = Integer.parseInt(code.toString());
+                throw new SDKException(code1);
+            }
         } catch (Exception e) {
             throw new SDKSerializationException(e.getMessage());
         }
-
-        throw new SDKException(map.getOrDefault("error", 0));
     }
 }

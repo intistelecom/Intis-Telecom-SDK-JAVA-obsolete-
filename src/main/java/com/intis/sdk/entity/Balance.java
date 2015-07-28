@@ -7,23 +7,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class of getting balance
  */
 public class Balance {
-    /**
-     * Amount of money
-     */
+
     @JsonProperty("money")
     protected String mAmount;
 
-    /**
-     * Name of currency
-     */
     @JsonProperty("currency")
     protected String mCurrency;
 
+    @JsonProperty("bonusAmount")
+    protected String mBonusAmount;
+
+    /**
+     * @return Amount of money
+     */
     public String getAmount() {
         return mAmount;
     }
 
+    /**
+     * @return Name of currency
+     */
     public String getCurrency() {
         return mCurrency;
+    }
+
+    /**
+     * @return The bonus amount
+     */
+    public String getBonusAmount() {
+        return mBonusAmount;
     }
 }
