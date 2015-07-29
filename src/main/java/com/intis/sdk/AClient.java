@@ -28,7 +28,7 @@ public abstract class AClient {
     public String getContent(String scriptName, Map<String, String> parameters) {
         Map<String, String> allParameters = getParameters(parameters);
         String url = mApiHost + scriptName + ".php?" + urlEncodeUTF8(allParameters);
-System.out.println(url);
+
         String result = getContentFromApi(url);
 
         try {
