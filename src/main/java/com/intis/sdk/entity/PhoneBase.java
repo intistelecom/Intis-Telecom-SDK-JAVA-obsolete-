@@ -7,67 +7,67 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class for getting data of phone number list
  */
 public class PhoneBase {
-    protected long mBaseId;
+    protected long baseId;
 
     @JsonProperty("name")
-    protected String mTitle;
+    protected String title;
 
     @JsonProperty("count")
-    protected int mCount;
+    protected int count;
 
     @JsonProperty("pages")
-    protected int mPages;
+    protected int pages;
 
     @JsonProperty("on_birth")
-    protected int mEnabled;
+    protected int enabled;
 
     @JsonProperty("day_before")
-    protected int mDaysBefore;
+    protected int daysBefore;
 
     @JsonProperty("birth_sender")
-    protected String mOriginator;
+    protected String originator;
 
     @JsonProperty("time_birth")
-    protected String mTimeToSend;
+    protected String timeToSend;
 
     @JsonProperty("local_time")
-    protected int mUseLocalTime;
+    protected int useLocalTime;
 
     @JsonProperty("birth_text")
-    protected String mTemplate;
+    protected String template;
 
     /**
      * @param id - List ID
      */
     public void setBaseId(long id){
-        mBaseId = id;
+        baseId = id;
     }
     /**
      * @return List ID
      */
     public long getBaseId() {
-        return mBaseId;
+        return baseId;
     }
 
     /**
      * @return Name of list
      */
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     /**
      * @return Number of contacts in list
      */
     public int getCount() {
-        return mCount;
+        return count;
     }
 
     /**
      * @return Number of pages in list
      */
     public int getPages() {
-        return mPages;
+        return pages;
     }
 
     /**
@@ -76,6 +76,6 @@ public class PhoneBase {
      * @return BirthdayGreetingSettings
      */
     public BirthdayGreetingSettings getBirthdayGreetingSettings(){
-            return new BirthdayGreetingSettings(mEnabled, mDaysBefore, mOriginator, mTimeToSend, mUseLocalTime, mTemplate);
+            return new BirthdayGreetingSettings(enabled, daysBefore, originator, timeToSend, useLocalTime, template);
     }
 }

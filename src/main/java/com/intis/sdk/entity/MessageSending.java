@@ -9,96 +9,96 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MessageSending {
 
     @JsonProperty("phone")
-    protected String mPhone;
+    protected String phone;
 
     @JsonProperty("id_sms")
-    protected String mMessageId;
+    protected String messageId;
 
     @JsonProperty("cost")
-    protected float mCost;
+    protected float cost;
 
     @JsonProperty("currency")
-    protected String mCurrency;
+    protected String currency;
 
     @JsonProperty("count_sms")
-    protected int mMessagesCount;
+    protected int messagesCount;
 
     @JsonProperty("error")
-    protected int mError;
+    protected int error;
 
     @JsonProperty("sender")
-    protected String mSender;
+    protected String sender;
 
     @JsonProperty("network")
-    protected String mNetwork;
+    protected String network;
 
     @JsonProperty("ported")
-    protected int mPorted;
+    protected int ported;
 
     /**
      * @param phone phone
      */
     public void setPhone(String phone){
-        mPhone = phone;
+        this.phone = phone;
     }
 
     /**
      * @return Phone number
      */
     public String getPhone() {
-        return mPhone;
+        return phone;
     }
 
     /**
      * @return Message ID
      */
     public String getMessageId() {
-        return mMessageId;
+        return messageId;
     }
 
     /**
      * @return Price for message
      */
     public float getCost() {
-        return mCost;
+        return cost;
     }
 
     /**
      * @return Name of currency
      */
     public String getCurrency() {
-        return mCurrency;
+        return currency;
     }
 
     /**
      * @return Number of message parts
      */
     public int getMessagesCount() {
-        return mMessagesCount;
+        return messagesCount;
     }
 
     /**
      * @return Error text in SMS sending
      */
     public int getError() {
-        return mError;
+        return error;
     }
 
     /**
      * @return Sender
      */
     public String getSender(){
-        return mSender;
+        return sender;
     }
 
     /**
      * @return operator
      */
     public String getNetwork(){
-        return mNetwork;
+        return network;
     }
 
     public int getPorted(){
-        return mPorted;
+        return ported;
     }
 }

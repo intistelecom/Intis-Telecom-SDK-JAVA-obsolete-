@@ -8,108 +8,108 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class PhoneBaseItem {
 
-    protected long mPhone;
+    protected long phone;
 
     @JsonProperty("name")
-    protected String mFirstName;
+    protected String firstName;
 
     @JsonProperty("middle_name")
-    protected String mMiddleName;
+    protected String middleName;
 
     @JsonProperty("last_name")
-    protected String mLastName;
+    protected String lastName;
 
     @JsonProperty("date_birth")
-    protected String mBirthDay;
+    protected String birthDay;
 
     @JsonProperty("male")
-    protected String mGenderString;
+    protected String genderString;
 
     @JsonProperty("region")
-    protected String mArea;
+    protected String area;
 
     @JsonProperty("operator")
-    protected String mNetwork;
+    protected String network;
 
     @JsonProperty("note1")
-    protected String mNote1;
+    protected String note1;
 
     @JsonProperty("note2")
-    protected String mNote2;
+    protected String note2;
 
     /**
      * @param phone - Phone number of subscriber
      */
     public void setPhone(long phone){
-        mPhone = phone;
+        this.phone = phone;
     }
     /**
      * @return Phone number of subscriber
      */
     public long getPhone() {
-        return mPhone;
+        return phone;
     }
 
     /**
      * @return Subscriber first name
      */
     public String getFirstName() {
-        return mFirstName;
+        return firstName;
     }
 
     /**
      * @return Subscriber middle name
      */
     public String getMiddleName() {
-        return mMiddleName;
+        return middleName;
     }
 
     /**
      * @return Subscriber last name
      */
     public String getLastName() {
-        return mLastName;
+        return lastName;
     }
 
     /**
      * @return Subscriber birth date
      */
     public String getBirthDay() {
-        return mBirthDay;
+        return birthDay;
     }
 
     /**
      * @return Gender of subscriber
      */
-    public int getGender() {
-        return Gender.Parse(mGenderString);
+    public Gender getGender() {
+        return Gender.Parse(genderString);
     }
 
     /**
      * @return Region of subscriber
      */
     public String getArea() {
-        return mArea;
+        return area;
     }
 
     /**
      * @return Operator of subscriber
      */
     public String getNetwork() {
-        return mNetwork;
+        return network;
     }
 
     /**
      * @return Note 1
      */
     public String getNote1() {
-        return mNote1;
+        return note1;
     }
 
     /**
      * @return Note 2
      */
     public String getNote2() {
-        return mNote2;
+        return note2;
     }
 }

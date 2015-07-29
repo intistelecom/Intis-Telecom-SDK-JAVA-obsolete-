@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HLRStatItem extends HLRResponse {
 
     @JsonProperty("message_id")
-    protected String mMessageId;
+    protected String messageId;
 
     @JsonProperty("total_price")
-    protected float mTotalPrice;
+    protected float totalPrice;
 
     @JsonProperty("request_id")
-    protected String mRequestId;
+    protected String requestId;
 
     @JsonProperty("request_time")
-    protected String mRequestTime;
+    protected String requestTime;
 
     @JsonProperty("error")
-    protected int mError;
+    protected int error;
 
     /**
      * @return Message ID
      */
     public String getMessageId() {
-        return mMessageId;
+        return messageId;
     }
 
     /**
      * @return Final price
      */
     public float getTotalPrice() {
-        return mTotalPrice;
+        return totalPrice;
     }
 
     /**
      * @return Request ID
      */
     public String getRequestId() {
-        return mRequestId;
+        return requestId;
     }
 
     /**
      * @return Time of HLR request
      */
     public String getRequestTime() {
-        return mRequestTime;
+        return requestTime;
     }
 
     /**
      * @return Code error
      */
     public int getError(){
-        return mError;
+        return error;
     }
 }

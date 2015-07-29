@@ -9,36 +9,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DeliveryStatus {
 
     @JsonProperty("messageId")
-    protected String mMessageId;
+    protected String messageId;
 
     @JsonProperty("status")
-    protected String mMessageStatus;
+    protected String messageStatus;
 
     @JsonProperty("time")
-    protected String mCreatedAt;
+    protected String createdAt;
 
     /**
      * @return Message ID
      */
     public String getMessageId() {
-        return mMessageId;
+        return messageId;
     }
 
     public void setMessageId(String messageId){
-        mMessageId = messageId;
+        this.messageId = messageId;
     }
 
     /**
      * @return Status of message
      */
     public String getMessageStatus() {
-        return mMessageStatus;
+        return messageStatus;
     }
 
     /**
      * @return Message ID
      */
     public String getCreatedAt() {
-        return mCreatedAt;
+        return createdAt;
     }
 }

@@ -9,24 +9,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Stats {
 
     @JsonProperty("cost")
-    protected float mCost;
+    protected float cost;
 
     @JsonProperty("status")
-    protected String mStatusText;
+    protected String statusText;
 
     @JsonProperty("parts")
-    protected int mCount;
+    protected int count;
 
     public int getCount() {
-        return mCount;
+        return count;
     }
 
     public float getCost() {
-        return mCost;
+        return cost;
     }
 
-    public int getState(){
-        return MessageState.Parse(mStatusText);
+    public MessageState getState(){
+        return MessageState.Parse(statusText);
 
     }
 }

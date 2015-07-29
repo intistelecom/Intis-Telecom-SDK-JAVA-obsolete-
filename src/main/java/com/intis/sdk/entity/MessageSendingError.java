@@ -6,7 +6,7 @@ import com.intis.sdk.exceptions.SDKException;
 
 public class MessageSendingError extends MessageSendingResult {
 
-    protected int mCode;
+    protected int code;
 
     public MessageSendingError(){
         setIsOk(false);
@@ -16,7 +16,7 @@ public class MessageSendingError extends MessageSendingResult {
      * @return Code error in SMS sending
      */
     public int getCode() {
-        return mCode;
+        return code;
     }
 
     /**
@@ -24,13 +24,13 @@ public class MessageSendingError extends MessageSendingResult {
      * @param code - Code error
      */
     public void setCode(int code){
-        mCode = code;
+        this.code = code;
     }
 
     /**
     * @return Error text
     */
     public String getMessage() {
-        return SDKException.getMessage(mCode);
+        return SDKException.getMessage(code);
     }
 }

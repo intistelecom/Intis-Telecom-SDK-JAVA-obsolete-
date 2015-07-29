@@ -1,20 +1,16 @@
 package com.intis.sdk.entity;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  * Created by Sergey on 27.07.2015.
  */
 public class MessageSendingSuccess extends MessageSendingResult {
 
-    protected String mMessageId;
+    protected String messageId;
 
-    protected float mCost;
+    protected float cost;
 
-    protected String mCurrency;
+    protected String currency;
 
-    protected int mMessagesCount;
+    protected int messagesCount;
 
     public MessageSendingSuccess() {
         setIsOk(true);
@@ -24,55 +20,55 @@ public class MessageSendingSuccess extends MessageSendingResult {
      * @return Message ID
      */
     public String getMessageId() {
-        return mMessageId;
+        return messageId;
     }
 
     /**
      * @return Price for message
      */
     public float getCost() {
-        return mCost;
+        return cost;
     }
 
     /**
      * @return Name of currency
      */
     public String getCurrency() {
-        return mCurrency;
+        return currency;
     }
 
     /**
      * @return Number of message parts
      */
     public int getMessagesCount() {
-        return mMessagesCount;
+        return messagesCount;
     }
 
     /**
      * @param mMessageId - Message ID
      */
     public void setMessageId(String mMessageId) {
-        this.mMessageId = mMessageId;
+        this.messageId = mMessageId;
     }
 
     /**
      * @param mCost - Price for message
      */
     public void setCost(float mCost) {
-        this.mCost = mCost;
+        this.cost = mCost;
     }
 
     /**
      * @param mCurrency - Name of currency
      */
     public void setCurrency(String mCurrency) {
-        this.mCurrency = mCurrency;
+        this.currency = mCurrency;
     }
 
     /**
      * @param mMessagesCount - Number of message parts
      */
     public void setMessagesCount(int mMessagesCount) {
-        this.mMessagesCount = mMessagesCount;
+        this.messagesCount = mMessagesCount;
     }
 }

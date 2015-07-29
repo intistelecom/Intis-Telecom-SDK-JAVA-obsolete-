@@ -12,42 +12,23 @@ import java.util.Map;
 public class DailyStats {
 
     @JsonProperty("date")
-    protected String mDay;
+    protected String day;
 
     @JsonProperty("stats")
-    protected List<Stats> mStats;
+    protected List<Stats> stats;
 
-//    public void DailyStats(Map<String, Map<String, Stats[]>[]> obj)
-//    {
-//        Day = obj.Key;
-//
-//        var stats = new List<Stats>();
-//        foreach (var one in obj.Value)
-//        {
-//            foreach (var item in one)
-//            {
-//                var st = item.Key;
-//                foreach (var stObj in item.Value)
-//                {
-//                    stObj.StateText = st;
-//                    stats.Add(stObj);
-//                }
-//            }
-//        }
-//        Stats = stats;
-//    }
 
     /**
      * @return variable for storing statistics
      */
     public List<Stats> getStats() {
-        return mStats;
+        return stats;
     }
 
     /**
      * @return day for statistics output
      */
     public String getDay() {
-        return mDay;
+        return day;
     }
 }

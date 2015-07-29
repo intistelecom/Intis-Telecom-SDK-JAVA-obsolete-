@@ -9,59 +9,59 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class IncomingMessage {
 
     @JsonProperty("messageId")
-    protected String mMessageId;
+    protected String messageId;
 
     @JsonProperty("date")
-    protected String mReceivedAt;
+    protected String receivedAt;
 
     @JsonProperty("sender")
-    protected String mOriginator;
+    protected String originator;
 
     @JsonProperty("prefix")
-    protected String mPrefix;
+    protected String prefix;
 
     @JsonProperty("text")
-    protected String mText;
+    protected String text;
 
     /**
      * @param messageId - Message ID
      */
     public void setMessageId(String messageId){
-        mMessageId = messageId;
+        this.messageId = messageId;
     }
 
     /**
      * @return Message ID
      */
     public String getMessageId() {
-        return mMessageId;
+        return messageId;
     }
 
     /**
      * @return Date of message receipt
      */
     public String getReceivedAt() {
-        return mReceivedAt;
+        return receivedAt;
     }
 
     /**
      * @return Sender name
      */
     public String getOriginator() {
-        return mOriginator;
+        return originator;
     }
 
     /**
      * @return Prefix of incoming message
      */
     public String getPrefix() {
-        return mPrefix;
+        return prefix;
     }
 
     /**
      * @return SMS text
      */
     public String getText() {
-        return mText;
+        return text;
     }
 }

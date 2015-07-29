@@ -8,49 +8,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Template {
 
-    protected long mId;
+    protected long id;
 
     @JsonProperty("name")
-    protected String mTitle;
+    protected String title;
 
     @JsonProperty("template")
-    protected String mTemplate;
+    protected String template;
 
     @JsonProperty("up_time")
-    protected String mCreatedAt;
+    protected String createdAt;
 
     /**
      * @return Template ID
      */
     public long getId() {
-        return mId;
+        return id;
     }
 
     /**
      * @param mId - Template ID
      */
     public void setId(long mId) {
-        this.mId = mId;
+        this.id = mId;
     }
 
     /**
      * @return Template name
      */
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     /**
      * @return Text of template
      */
     public String getTemplate() {
-        return mTemplate;
+        return template;
     }
 
     /**
      * @return Time of template creating
      */
     public String getCreatedAt() {
-        return mCreatedAt;
+        return createdAt;
     }
 }

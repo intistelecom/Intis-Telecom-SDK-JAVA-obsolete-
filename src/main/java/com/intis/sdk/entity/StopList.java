@@ -8,38 +8,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class StopList {
 
-    protected long mId;
+    protected long id;
 
     @JsonProperty("time_in")
-    protected String mTimeAddedAt;
+    protected String timeAddedAt;
 
     @JsonProperty("description")
-    protected String mDescription;
+    protected String description;
 
     /**
      * @param id - Stop list ID
      */
     public void setId(long id){
-        mId = id;
+        this.id = id;
     }
     /**
      * @return Stop list ID
      */
     public long getId() {
-        return mId;
+        return id;
     }
 
     /**
      * @return Time of adding to stop list
      */
     public String getTimeAddedAt() {
-        return mTimeAddedAt;
+        return timeAddedAt;
     }
 
     /**
      * @return Reason of adding to stop list
      */
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 }

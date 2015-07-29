@@ -1,18 +1,16 @@
 package com.intis.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intis.sdk.entity.*;
 import com.intis.sdk.exceptions.*;
-import sun.nio.ch.Net;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
-public class IntisClient extends AClient {
+public class IntisClient extends AClient implements IClient {
 
     public IntisClient(String login, String apiKey, String apiHost) {
         mLogin = login;
@@ -270,7 +268,7 @@ public class IntisClient extends AClient {
         }
     }
 
-    public List<DailyStats> getDailyStatsByMonth(int year, int month) throws DailyStatsException
+    public List<DailyStats> getDailyStatsByMonth(Integer year, Integer month) throws DailyStatsException
     {
         LocalDate date = LocalDate.of(year, month, 1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");

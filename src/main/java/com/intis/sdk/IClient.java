@@ -2,7 +2,9 @@ package com.intis.sdk;
 
 import com.intis.sdk.entity.*;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import com.intis.sdk.exceptions.*;
 
 /**
  * Interface IClient
@@ -15,18 +17,18 @@ public interface IClient {
      * Get balance
      * @return Balance
      */
-    Balance getBalance();
+    Balance getBalance() throws BalanceException;
     /**
      * Getting user lists
      * @return PhoneBase[]
      */
-    ArrayList<PhoneBase> getPhoneBases();
+    List<PhoneBase> getPhoneBases() throws PhoneBasesException;
 
     /**
      * Get sender names
      * @return Originator[]
      */
-    ArrayList<Originator> getOriginators();
+    List<Originator> getOriginators() throws OriginatorException;
 
     /**
      * Get phone numbers from list
@@ -34,14 +36,14 @@ public interface IClient {
      * @param page - Page number
      * @return PhoneBaseItem[]
      */
-    ArrayList<PhoneBaseItem> getPhoneBaseItems(int baseId, int page);
+    List<PhoneBaseItem> getPhoneBaseItems(Integer baseId, Integer page) throws PhoneBaseItemException;
 
     /**
      * Get information of message status
      * @param messageId - Message ID
      * @return PhoneBaseItem[]
      */
-    ArrayList<DeliveryStatus> getDeliveryStatus(String[] messageId);
+    List<DeliveryStatus> getDeliveryStatus(String[] messageId) throws DeliveryStatusException;
 
     /**
      * Send a message
@@ -50,27 +52,27 @@ public interface IClient {
      * @param text - SMS text
      * @return Message ID
      */
-    ArrayList<MessageSendingResult> gendMessage(long[] phone, String originator, String text);
+    List<MessageSendingResult> sendMessage(String[] phone, String originator, String text) throws MessageSendingResultException;
 
     /**
      * Search of number in stop list
      * @param phone - Phone number
      * @return StopList
      */
-    StopList checkStopList(long phone);
+    StopList checkStopList(String phone) throws StopListException;
 
     /**
      * Add number to stop list
      * @param phone - Phone number
      * @return ID
      */
-    long addToStopList(long phone);
+    Long addToStopList(String phone) throws AddToStopListException;
 
     /**
      * Get list of templates
      * @return Template[]
      */
-    ArrayList<Template> getTemplates();
+    List<Template> getTemplates() throws TemplateException;
 
     /**
      * Add a template
@@ -78,7 +80,7 @@ public interface IClient {
      * @param template - Template
      * @return ID
      */
-    long addTemplate(String title, String template);
+    Long addTemplate(String title, String template) throws AddTemplateException;
 
     /**
      * Get statistics for a month by days
@@ -86,14 +88,14 @@ public interface IClient {
      * @param month - Month
      * @return DailyStats[]
      */
-    ArrayList<DailyStats> getDailyStatsByMonth(int year, int month);
+    List<DailyStats> getDailyStatsByMonth(Integer year, Integer month) throws DailyStatsException;
 
     /**
      * HLR request
      * @param phone - Phone number
      * @return HLRResponse[]
      */
-    ArrayList<HLRResponse> makeHlrRequest(long[] phone);
+    List<HLRResponse> makeHlrRequest(String[] phone) throws HLRResponseException;
 
     /**
      * Statistics of HLR requests
@@ -101,19 +103,19 @@ public interface IClient {
      * @param to - Final date in the format YYYY-MM-DD
      * @return HLRStatItem[]
      */
-    ArrayList<HLRStatItem> getHlrStats(String from, String to);
+    List<HLRStatItem> getHlrStats(String from, String to) throws HLRStatItemException;
 
     /**
      * Get operator
      * @param phone - Phone number
      * @return Network
      */
-    Network getNetworkByPhone(long phone);
+    Network getNetworkByPhone(String phone) throws NetworkException;
 
     /**
      * Get incoming SMS
      * @param date - Date in the format YYYY-MM-DD
      * @return IncomingMessage[]
      */
-    ArrayList<IncomingMessage> getIncomingMessages(String date);
+    List<IncomingMessage> getIncomingMessages(String date) throws IncomingMessageException;
 }

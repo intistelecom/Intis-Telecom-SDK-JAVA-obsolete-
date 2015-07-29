@@ -9,32 +9,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Balance {
 
     @JsonProperty("money")
-    protected String mAmount;
+    protected String amount;
 
     @JsonProperty("currency")
-    protected String mCurrency;
+    protected String currency;
 
     @JsonProperty("bonusAmount")
-    protected String mBonusAmount;
+    protected String bonusAmount;
 
     /**
      * @return Amount of money
      */
     public String getAmount() {
-        return mAmount;
+        return amount;
     }
 
     /**
      * @return Name of currency
      */
     public String getCurrency() {
-        return mCurrency;
+        return currency;
     }
 
     /**
      * @return The bonus amount
      */
     public String getBonusAmount() {
-        return mBonusAmount;
+        return bonusAmount;
     }
 }

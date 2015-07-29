@@ -6,27 +6,27 @@ package com.intis.sdk.entity;
  */
 public class Originator {
 
-    protected String mName;
+    protected String name;
 
-    protected String mStateText;
+    protected String stateText;
 
     public Originator(String mName, String mStateText) {
-        this.mName = mName;
-        this.mStateText = mStateText;
+        this.name = mName;
+        this.stateText = mStateText;
     }
 
     /**
      * @return Sender name
      */
     public String getName() {
-        return mName;
+        return name;
     }
 
     /**
      * @return Sender status
      */
-    public Integer getState() {
-        return OriginatorState.Parse(this.mStateText);
+    public OriginatorState getState() {
+        return OriginatorState.Parse(this.stateText);
     }
 
 }

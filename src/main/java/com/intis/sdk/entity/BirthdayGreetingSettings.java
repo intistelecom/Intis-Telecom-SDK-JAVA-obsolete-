@@ -6,67 +6,67 @@ package com.intis.sdk.entity;
  */
 public class BirthdayGreetingSettings {
 
-    protected int mEnabled;
+    protected int enabled;
 
-    protected int mDaysBefore;
+    protected int daysBefore;
 
-    protected String mOriginator;
+    protected String originator;
 
-    protected String mTimeToSend;
+    protected String timeToSend;
 
-    protected int mUseLocalTime;
+    protected int useLocalTime;
 
-    protected String mTemplate;
+    protected String template;
 
     public BirthdayGreetingSettings(int enabled, int daysBefore, String originator, String timeToSend, int useLocalTime, String template)
     {
-        mEnabled = enabled;
-        mDaysBefore = daysBefore;
-        mOriginator = originator;
-        mTimeToSend = timeToSend;
-        mUseLocalTime = useLocalTime;
-        mTemplate = template;
+        this.enabled = enabled;
+        this.daysBefore = daysBefore;
+        this.originator = originator;
+        this.timeToSend = timeToSend;
+        this.useLocalTime = useLocalTime;
+        this.template = template;
     }
 
     /**
      * @return key that is responsible for sending birthday greeting
      */
     public int getEnabled() {
-        return mEnabled;
+        return enabled;
     }
 
     /**
      * @return number of days to send greetings before
      */
     public int getDaysBefore() {
-        return mDaysBefore;
+        return daysBefore;
     }
 
     /**
      * @return sender name of greeting SMS
      */
     public String getOriginator() {
-        return mOriginator;
+        return originator;
     }
 
     /**
      * @return time for sending greetings
      */
     public String getTimeToSend() {
-        return mTimeToSend;
+        return timeToSend;
     }
 
     /**
      * @return use local time of subscriber while SMS sending
      */
     public int getUseLocalTime() {
-        return mUseLocalTime;
+        return useLocalTime;
     }
 
     /**
      * @return text template for sending greetings
      */
     public String getTemplate() {
-        return mTemplate;
+        return template;
     }
 }
