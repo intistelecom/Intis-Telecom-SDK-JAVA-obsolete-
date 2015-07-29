@@ -40,7 +40,7 @@ public abstract class AClient {
 
         try {
             checkException(result);
-        } catch (Throwable e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -27,7 +27,7 @@ public class AddTemplateTest {
         assertNotNull(id);
     }
 
-    @Test(expected = SDKSerializationException.class)
+    @Test(expected = SDKException.class)
     public void addTemplateWidthException() throws AddTemplateException{
         String login = "rso";
         String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";
