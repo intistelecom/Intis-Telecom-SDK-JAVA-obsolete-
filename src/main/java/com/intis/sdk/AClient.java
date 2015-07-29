@@ -25,11 +25,18 @@ public abstract class AClient {
      */
     protected String mApiHost;
 
+    protected IApiConnector apiConnector;
+
+    public AClient(IApiConnector apiConnector){
+        if (apiConnector == null)
+            apiConnector = new HttpApiConnector();
+    }
+
     public String getContent(String scriptName, Map<String, String> parameters) {
         Map<String, String> allParameters = getParameters(parameters);
         String url = mApiHost + scriptName + ".php?" + urlEncodeUTF8(allParameters);
 
-        String result = getContentFromApi(url);
+        String result = apiConnector.getContentFromApi(url);
 
         try {
             checkException(result);
@@ -139,29 +146,6 @@ public abstract class AClient {
             ));
         }
         return sb.toString();
-    }
-
-    /**
-     * Getting data from API.
-     */
-    private String getContentFromApi(String link) {
-        String result = "";
-        try {
-            URL url = new URL(link);
-            InputStream is = url.openConnection().getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-                result = result + line;
-            }
-            reader.close();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
     }
 
     /**
