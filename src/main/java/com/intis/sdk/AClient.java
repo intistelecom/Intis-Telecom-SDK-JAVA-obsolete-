@@ -29,7 +29,7 @@ public abstract class AClient {
 
     public AClient(IApiConnector apiConnector){
         if (apiConnector == null)
-            apiConnector = new HttpApiConnector();
+            this.apiConnector = new HttpApiConnector();
     }
 
     public String getContent(String scriptName, Map<String, String> parameters) {
