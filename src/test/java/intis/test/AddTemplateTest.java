@@ -22,12 +22,12 @@ public class AddTemplateTest {
 
         IntisClient client = new IntisClient(login, apiKey, apiHost);
 
-        Long id = client.addTemplate("test16", "template for test11");
+        Long id = client.addTemplate("test17", "template for test11");
         System.out.println(id);
         assertNotNull(id);
     }
 
-    @Test(expected = SDKException.class)
+    @Test(expected = AddTemplateException.class)
     public void addTemplateWidthException() throws AddTemplateException{
         String login = "rso";
         String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";

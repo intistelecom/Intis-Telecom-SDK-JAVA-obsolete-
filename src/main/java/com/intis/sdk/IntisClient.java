@@ -25,9 +25,9 @@ public class IntisClient extends AClient implements IClient {
 
     public Balance getBalance() throws BalanceException {
         Map<String, String> parameters = new HashMap<String, String>();
-        String content = getContent("balance", parameters);
 
         try {
+            String content = getContent("balance", parameters);
             ObjectMapper mapper = new ObjectMapper();
             Balance balance = mapper.readValue(content, Balance.class);
 
@@ -39,11 +39,12 @@ public class IntisClient extends AClient implements IClient {
 
     public List<PhoneBase> getPhoneBases() throws PhoneBasesException {
         Map<String, String> parameters = new HashMap<String, String>();
-        String content = getContent("base", parameters);
-
-        List<PhoneBase> bases = new ArrayList<PhoneBase>();
 
         try {
+            String content = getContent("base", parameters);
+
+            List<PhoneBase> bases = new ArrayList<PhoneBase>();
+
             Map<Long, PhoneBase> map;
             ObjectMapper mapper = new ObjectMapper();
 
@@ -65,11 +66,12 @@ public class IntisClient extends AClient implements IClient {
 
     public List<Originator> getOriginators() throws OriginatorException {
         Map<String, String> parameters = new HashMap<String, String>();
-        String content = getContent("senders", parameters);
-
-        List<Originator> originators = new ArrayList<Originator>();
 
         try {
+            String content = getContent("senders", parameters);
+
+            List<Originator> originators = new ArrayList<Originator>();
+
             Map<String, String> map;
             ObjectMapper mapper = new ObjectMapper();
 
@@ -93,11 +95,12 @@ public class IntisClient extends AClient implements IClient {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("base", baseId.toString());
         parameters.put("page", page.toString());
-        String content = getContent("phone", parameters);
-
-        List<PhoneBaseItem> phoneBaseItems = new ArrayList<PhoneBaseItem>();
 
         try {
+            String content = getContent("phone", parameters);
+
+            List<PhoneBaseItem> phoneBaseItems = new ArrayList<PhoneBaseItem>();
+
             Map<Long, PhoneBaseItem> map;
             ObjectMapper mapper = new ObjectMapper();
 
@@ -120,11 +123,12 @@ public class IntisClient extends AClient implements IClient {
     public List<DeliveryStatus> getDeliveryStatus(String[] messageId) throws DeliveryStatusException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("state", String.join(",", messageId));
-        String content = getContent("status", parameters);
-
-        List<DeliveryStatus> deliveryStatus = new ArrayList<DeliveryStatus>();
 
         try {
+            String content = getContent("status", parameters);
+
+            List<DeliveryStatus> deliveryStatus = new ArrayList<DeliveryStatus>();
+
             Map<String, DeliveryStatus> map;
             ObjectMapper mapper = new ObjectMapper();
 
@@ -149,11 +153,12 @@ public class IntisClient extends AClient implements IClient {
         parameters.put("phone", String.join(",", phone));
         parameters.put("sender", originator);
         parameters.put("text", text);
-        String content = getContent("send", parameters);
-
-        List<MessageSendingResult> messages = new ArrayList<MessageSendingResult>();
 
         try {
+            String content = getContent("send", parameters);
+
+            List<MessageSendingResult> messages = new ArrayList<MessageSendingResult>();
+
             Map<String, MessageSending> map;
             ObjectMapper mapper = new ObjectMapper();
 
@@ -190,9 +195,10 @@ public class IntisClient extends AClient implements IClient {
     public StopList checkStopList(String phone) throws StopListException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", phone);
-        String content = getContent("find_on_stop", parameters);
 
         try {
+            String content = getContent("find_on_stop", parameters);
+
             StopList stopList = new StopList();
             ObjectMapper mapper = new ObjectMapper();
             Map<Long, StopList> map = mapper.readValue(content, new TypeReference<HashMap<Long, StopList>>() {
@@ -212,9 +218,10 @@ public class IntisClient extends AClient implements IClient {
     public Long addToStopList(String phone) throws AddToStopListException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", phone);
-        String content = getContent("add2stop", parameters);
 
         try {
+            String content = getContent("add2stop", parameters);
+
             ObjectMapper mapper = new ObjectMapper();
 
             Map<String, Long> map = mapper.readValue(content, new TypeReference<HashMap<String, Long>>() {
@@ -230,10 +237,12 @@ public class IntisClient extends AClient implements IClient {
 
     public List<Template> getTemplates() throws TemplateException {
         Map<String, String> parameters = new HashMap<String, String>();
-        String content = getContent("template", parameters);
 
-        List<Template> list = new ArrayList<Template>();
         try {
+            String content = getContent("template", parameters);
+
+            List<Template> list = new ArrayList<Template>();
+
             Map<Long, Template> map;
             ObjectMapper mapper = new ObjectMapper();
 
@@ -257,9 +266,9 @@ public class IntisClient extends AClient implements IClient {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("name", title);
         parameters.put("text", template);
-        String content = getContent("add_template", parameters);
-
         try {
+            String content = getContent("add_template", parameters);
+
             ObjectMapper mapper = new ObjectMapper();
 
             Map<String, Long> map = mapper.readValue(content, new TypeReference<HashMap<String, Long>>() {
@@ -280,9 +289,10 @@ public class IntisClient extends AClient implements IClient {
 
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("month", date.format(formatter));
-        String content = getContent("stat_by_month", parameters);
 
         try{
+            String content = getContent("stat_by_month", parameters);
+
             ObjectMapper mapper = new ObjectMapper();
 
             List<DailyStats> list = mapper.readValue(content, new TypeReference<List<DailyStats>>(){});
@@ -297,11 +307,12 @@ public class IntisClient extends AClient implements IClient {
     public List<HLRResponse> makeHlrRequest(String[] phone) throws HLRResponseException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", String.join(",", phone));
-        String content = getContent("hlr", parameters);
-
-        List<HLRResponse> items = new ArrayList<HLRResponse>();
 
         try {
+            String content = getContent("hlr", parameters);
+
+            List<HLRResponse> items = new ArrayList<HLRResponse>();
+
             Map<Long, HLRResponse> map;
             ObjectMapper mapper = new ObjectMapper();
 
@@ -321,9 +332,10 @@ public class IntisClient extends AClient implements IClient {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("from", from);
         parameters.put("to", to);
-        String content = getContent("hlr_stat", parameters);
 
         try {
+            String content = getContent("hlr_stat", parameters);
+
             List<HLRStatItem> items = new ArrayList<HLRStatItem>();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -343,9 +355,10 @@ public class IntisClient extends AClient implements IClient {
     public Network getNetworkByPhone(String phone) throws NetworkException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", phone);
-        String content = getContent("operator", parameters);
 
         try {
+            String content = getContent("operator", parameters);
+
             ObjectMapper mapper = new ObjectMapper();
             Network network = mapper.readValue(content, Network.class);
 
@@ -358,9 +371,10 @@ public class IntisClient extends AClient implements IClient {
     public List<IncomingMessage> getIncomingMessages(String date) throws IncomingMessageException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("date", date);
-        String content = getContent("incoming", parameters);
 
         try {
+            String content = getContent("incoming", parameters);
+
             List<IncomingMessage> list = new ArrayList<IncomingMessage>();
 
             ObjectMapper mapper = new ObjectMapper();

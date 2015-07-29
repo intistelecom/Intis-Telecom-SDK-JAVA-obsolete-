@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public abstract class AClient {
@@ -32,17 +33,13 @@ public abstract class AClient {
             this.apiConnector = new HttpApiConnector();
     }
 
-    public String getContent(String scriptName, Map<String, String> parameters) {
+    public String getContent(String scriptName, Map<String, String> parameters) throws SDKException, SDKSerializationException{
         Map<String, String> allParameters = getParameters(parameters);
         String url = mApiHost + scriptName + ".php?" + urlEncodeUTF8(allParameters);
 
         String result = apiConnector.getContentFromApi(url);
 
-        try {
-            checkException(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        checkException(result);
 
         return result;
     }
@@ -50,25 +47,10 @@ public abstract class AClient {
     /**
      * Getting time in UNIX format from the file timestamp.php in API
      */
-    private String getTimestamp() {
-        String result = "";
-        try {
-            URL url = new URL(mApiHost + "timestamp.php");
+    private String getTimestamp(){
+        String url = mApiHost + "timestamp.php";
 
-            InputStream is = url.openConnection().getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                result = result + line;
-            }
-            reader.close();
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String result = apiConnector.getContentFromApi(url);
 
         return result;
     }
@@ -111,7 +93,7 @@ public abstract class AClient {
         return MD5(strParameters);
     }
 
-    private String MD5(String md5) {
+    private String MD5(String md5){
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
             byte[] array = md.digest(md5.getBytes());
