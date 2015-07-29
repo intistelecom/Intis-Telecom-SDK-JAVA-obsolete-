@@ -177,16 +177,20 @@ public abstract class AClient {
             Map<String, Object> map;
             ObjectMapper mapper = new ObjectMapper();
 
+            Integer code1 = null;
             try {
                 map = mapper.readValue(result, new TypeReference<HashMap<String, Object>>() {});
                 if(map.size() == 1 && map.containsKey("error")) {
                     Object code = map.get("error");
-                    Integer code1 = Integer.parseInt(code.toString());
-                    throw new SDKException(code1);
+                    code1 = Integer.parseInt(code.toString());
                 }
             } catch (Exception e) {
                 throw new SDKSerializationException(e.getMessage());
             }
+
+            if(code1 != null)
+                throw new SDKException(code1);
+
         }
     }
 }
