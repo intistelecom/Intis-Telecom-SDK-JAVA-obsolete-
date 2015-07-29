@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Balance {
 
     @JsonProperty("money")
-    protected String amount;
+    private String amount;
 
     @JsonProperty("currency")
-    protected String currency;
+    private String currency;
 
     @JsonProperty("bonusAmount")
-    protected String bonusAmount;
+    private String bonusAmount;
 
     /**
      * @return Amount of money

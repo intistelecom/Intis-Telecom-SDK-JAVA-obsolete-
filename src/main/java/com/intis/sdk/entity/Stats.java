@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Stats {
 
     @JsonProperty("cost")
-    protected float cost;
+    private float cost;
 
     @JsonProperty("status")
-    protected String statusText;
+    private String statusText;
 
     @JsonProperty("parts")
-    protected int count;
+    private int count;
 
     public int getCount() {
         return count;

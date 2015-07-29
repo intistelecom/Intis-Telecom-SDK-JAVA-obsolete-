@@ -8,16 +8,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Template {
 
-    protected long id;
+    private long id;
 
     @JsonProperty("name")
-    protected String title;
+    private String title;
 
     @JsonProperty("template")
-    protected String template;
+    private String template;
 
     @JsonProperty("up_time")
-    protected String createdAt;
+    private String createdAt;
 
     /**
      * @return Template ID

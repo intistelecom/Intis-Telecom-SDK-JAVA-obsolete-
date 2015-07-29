@@ -12,10 +12,10 @@ import java.util.Map;
 public class DailyStats {
 
     @JsonProperty("date")
-    protected String day;
+    private String day;
 
     @JsonProperty("stats")
-    protected List<Stats> stats;
+    private List<Stats> stats;
 
 
     /**

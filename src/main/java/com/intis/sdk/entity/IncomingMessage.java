@@ -9,19 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class IncomingMessage {
 
     @JsonProperty("messageId")
-    protected String messageId;
+    private String messageId;
 
     @JsonProperty("date")
-    protected String receivedAt;
+    private String receivedAt;
 
     @JsonProperty("sender")
-    protected String originator;
+    private String originator;
 
     @JsonProperty("prefix")
-    protected String prefix;
+    private String prefix;
 
     @JsonProperty("text")
-    protected String text;
+    private String text;
 
     /**
      * @param messageId - Message ID

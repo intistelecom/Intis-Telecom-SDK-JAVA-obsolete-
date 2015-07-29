@@ -9,19 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HLRStatItem extends HLRResponse {
 
     @JsonProperty("message_id")
-    protected String messageId;
+    private String messageId;
 
     @JsonProperty("total_price")
-    protected float totalPrice;
+    private float totalPrice;
 
     @JsonProperty("request_id")
-    protected String requestId;
+    private String requestId;
 
     @JsonProperty("request_time")
-    protected String requestTime;
+    private String requestTime;
 
     @JsonProperty("error")
-    protected int error;
+    private int error;
 
     /**
      * @return Message ID

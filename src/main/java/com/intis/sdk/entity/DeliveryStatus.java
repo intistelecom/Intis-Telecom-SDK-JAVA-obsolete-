@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DeliveryStatus {
 
     @JsonProperty("messageId")
-    protected String messageId;
+    private String messageId;
 
     @JsonProperty("status")
-    protected String messageStatus;
+    private String messageStatus;
 
     @JsonProperty("time")
-    protected String createdAt;
+    private String createdAt;
 
     /**
      * @return Message ID

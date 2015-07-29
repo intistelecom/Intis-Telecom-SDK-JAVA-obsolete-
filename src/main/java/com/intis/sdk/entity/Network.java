@@ -9,34 +9,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Network {
 
     @JsonProperty("operator")
-    protected String title;
+    private String title;
 
     @JsonProperty("currency")
-    protected String currency;
+    private String currency;
 
     @JsonProperty("error")
-    protected int error;
+    private int error;
 
     @JsonProperty("mcc")
-    protected String mcc;
+    private String mcc;
 
     @JsonProperty("mnc")
-    protected String mnc;
+    private String mnc;
 
     @JsonProperty("phone")
-    protected String phone;
+    private String phone;
 
     @JsonProperty("ported")
-    protected String ported;
+    private String ported;
 
     @JsonProperty("price")
-    protected String price;
+    private String price;
 
     @JsonProperty("regionCode")
-    protected int regionCode;
+    private int regionCode;
 
     @JsonProperty("timeZone")
-    protected int timeZone;
+    private int timeZone;
 
     /**
      * @return Operator name

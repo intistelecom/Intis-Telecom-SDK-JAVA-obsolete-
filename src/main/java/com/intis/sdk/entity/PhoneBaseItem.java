@@ -8,34 +8,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class PhoneBaseItem {
 
-    protected long phone;
+    private long phone;
 
     @JsonProperty("name")
-    protected String firstName;
+    private String firstName;
 
     @JsonProperty("middle_name")
-    protected String middleName;
+    private String middleName;
 
     @JsonProperty("last_name")
-    protected String lastName;
+    private String lastName;
 
     @JsonProperty("date_birth")
-    protected String birthDay;
+    private String birthDay;
 
     @JsonProperty("male")
-    protected String genderString;
+    private String genderString;
 
     @JsonProperty("region")
-    protected String area;
+    private String area;
 
     @JsonProperty("operator")
-    protected String network;
+    private String network;
 
     @JsonProperty("note1")
-    protected String note1;
+    private String note1;
 
     @JsonProperty("note2")
-    protected String note2;
+    private String note2;
 
     /**
      * @param phone - Phone number of subscriber

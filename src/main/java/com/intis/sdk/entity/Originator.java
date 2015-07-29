@@ -6,9 +6,9 @@ package com.intis.sdk.entity;
  */
 public class Originator {
 
-    protected String name;
+    private String name;
 
-    protected String stateText;
+    private String stateText;
 
     public Originator(String mName, String mStateText) {
         this.name = mName;

@@ -9,31 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MessageSending {
 
     @JsonProperty("phone")
-    protected String phone;
+    private String phone;
 
     @JsonProperty("id_sms")
-    protected String messageId;
+    private String messageId;
 
     @JsonProperty("cost")
-    protected float cost;
+    private float cost;
 
     @JsonProperty("currency")
-    protected String currency;
+    private String currency;
 
     @JsonProperty("count_sms")
-    protected int messagesCount;
+    private int messagesCount;
 
     @JsonProperty("error")
-    protected int error;
+    private int error;
 
     @JsonProperty("sender")
-    protected String sender;
+    private String sender;
 
     @JsonProperty("network")
-    protected String network;
+    private String network;
 
     @JsonProperty("ported")
-    protected int ported;
+    private int ported;
 
     /**
      * @param phone phone

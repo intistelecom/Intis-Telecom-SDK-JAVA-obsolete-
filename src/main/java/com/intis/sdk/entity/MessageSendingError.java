@@ -6,7 +6,7 @@ import com.intis.sdk.exceptions.SDKException;
 
 public class MessageSendingError extends MessageSendingResult {
 
-    protected int code;
+    private int code;
 
     public MessageSendingError(){
         setIsOk(false);

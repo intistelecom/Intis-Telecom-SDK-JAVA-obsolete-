@@ -7,34 +7,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class for getting data of phone number list
  */
 public class PhoneBase {
-    protected long baseId;
+    private long baseId;
 
     @JsonProperty("name")
-    protected String title;
+    private String title;
 
     @JsonProperty("count")
-    protected int count;
+    private int count;
 
     @JsonProperty("pages")
-    protected int pages;
+    private int pages;
 
     @JsonProperty("on_birth")
-    protected int enabled;
+    private int enabled;
 
     @JsonProperty("day_before")
-    protected int daysBefore;
+    private int daysBefore;
 
     @JsonProperty("birth_sender")
-    protected String originator;
+    private String originator;
 
     @JsonProperty("time_birth")
-    protected String timeToSend;
+    private String timeToSend;
 
     @JsonProperty("local_time")
-    protected int useLocalTime;
+    private int useLocalTime;
 
     @JsonProperty("birth_text")
-    protected String template;
+    private String template;
 
     /**
      * @param id - List ID

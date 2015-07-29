@@ -4,13 +4,13 @@ package com.intis.sdk.entity;
  */
 public class MessageSendingSuccess extends MessageSendingResult {
 
-    protected String messageId;
+    private String messageId;
 
-    protected float cost;
+    private float cost;
 
-    protected String currency;
+    private String currency;
 
-    protected int messagesCount;
+    private int messagesCount;
 
     public MessageSendingSuccess() {
         setIsOk(true);

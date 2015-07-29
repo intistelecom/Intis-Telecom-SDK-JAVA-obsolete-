@@ -6,17 +6,17 @@ package com.intis.sdk.entity;
  */
 public class BirthdayGreetingSettings {
 
-    protected int enabled;
+    private int enabled;
 
-    protected int daysBefore;
+    private int daysBefore;
 
-    protected String originator;
+    private String originator;
 
-    protected String timeToSend;
+    private String timeToSend;
 
-    protected int useLocalTime;
+    private int useLocalTime;
 
-    protected String template;
+    private String template;
 
     public BirthdayGreetingSettings(int enabled, int daysBefore, String originator, String timeToSend, int useLocalTime, String template)
     {

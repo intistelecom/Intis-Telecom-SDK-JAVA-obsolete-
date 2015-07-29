@@ -12,9 +12,9 @@ import static org.junit.Assert.*;
 
 public class PhoneBaseItemsTest {
 
-    private String login = "rso";
-    private String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";
-    private String apiHost = "http://dev.sms16.ru/get/";
+    private String login = "your api login";
+    private String apiKey = "your api key here";
+    private String apiHost = "http://api.host.com/get/";
 
     @Test
     public void getPhoneBaseItems() throws PhoneBaseItemException{

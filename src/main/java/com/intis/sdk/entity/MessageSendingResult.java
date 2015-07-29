@@ -6,9 +6,9 @@ package com.intis.sdk.entity;
  */
 public class MessageSendingResult {
 
-    protected String phone;
+    private String phone;
 
-    protected boolean isOk;
+    private boolean isOk;
 
     /**
      * @return Phone number
