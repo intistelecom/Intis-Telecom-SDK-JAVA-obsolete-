@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class HLRResponseTest {
+public class DailyStatsByMonthTest {
 
     @Test
     public void testMakeHlrRequest() {
@@ -22,17 +22,20 @@ public class HLRResponseTest {
         IntisClient client = new IntisClient(login, apiKey, apiHost);
 
         try {
-            String[] phones = {"79802503672"};
-            List<HLRResponse> bases = client.makeHlrRequest(phones);
+            List<DailyStats> bases = client.getDailyStatsByMonth(2015, 2);
 
-            for (HLRResponse item : bases) {
-                System.out.print("id - " + item.getId());
-                System.out.print("imsi - " + item.getImsi());
-                System.out.print("original country code - " + item.getOriginalCountryCode());
+            for (DailyStats item : bases) {
+                System.out.println("day - " + item.getDay());
+                List<Stats> stats = item.getStats();
+                for(Stats entry: stats){
+                    System.out.println("stats - " + entry.getState());
+                    System.out.println("cost - " + entry.getCost());
+                    System.out.println("count - " + entry.getCount());
+                }
             }
             assertTrue(bases.size() > 0);
         }
-        catch (HLRResponseException e)
+        catch (DailyStatsException e)
         {
             e.printStackTrace();
         }

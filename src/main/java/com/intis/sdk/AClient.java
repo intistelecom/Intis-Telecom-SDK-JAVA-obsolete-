@@ -172,18 +172,21 @@ System.out.println(url);
             throw new SDKException(0);
         }
 
-        Map<String, Object> map;
-        ObjectMapper mapper = new ObjectMapper();
+        String test = result.substring(0, 8);
+        if(test.equals("{\"error\"")){
+            Map<String, Object> map;
+            ObjectMapper mapper = new ObjectMapper();
 
-        try {
-            map = mapper.readValue(result, new TypeReference<HashMap<String, Object>>() {});
-            if(map.size() == 1 && map.containsKey("error")) {
-                Object code = map.get("error");
-                Integer code1 = Integer.parseInt(code.toString());
-                throw new SDKException(code1);
+            try {
+                map = mapper.readValue(result, new TypeReference<HashMap<String, Object>>() {});
+                if(map.size() == 1 && map.containsKey("error")) {
+                    Object code = map.get("error");
+                    Integer code1 = Integer.parseInt(code.toString());
+                    throw new SDKException(code1);
+                }
+            } catch (Exception e) {
+                throw new SDKSerializationException(e.getMessage());
             }
-        } catch (Exception e) {
-            throw new SDKSerializationException(e.getMessage());
         }
     }
 }

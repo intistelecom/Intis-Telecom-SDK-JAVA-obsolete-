@@ -1,5 +1,7 @@
 package com.intis.sdk.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +11,14 @@ import java.util.Map;
  */
 public class DailyStats {
 
+    @JsonProperty("date")
     protected String mDay;
 
+    @JsonProperty("stats")
     protected List<Stats> mStats;
 
-    public void DailyStats(Map<String, Map<String, Stats[]>[]> obj)
-    {
+//    public void DailyStats(Map<String, Map<String, Stats[]>[]> obj)
+//    {
 //        Day = obj.Key;
 //
 //        var stats = new List<Stats>();
@@ -31,7 +35,7 @@ public class DailyStats {
 //            }
 //        }
 //        Stats = stats;
-    }
+//    }
 
     /**
      * @return variable for storing statistics

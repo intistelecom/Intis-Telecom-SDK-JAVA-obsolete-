@@ -7,49 +7,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class for getting statistics
  */
 public class Stats {
-    protected String mStateText;
 
     @JsonProperty("cost")
     protected float mCost;
 
-    @JsonProperty("currency")
-    protected String mCurrency;
+    @JsonProperty("status")
+    protected String mStatusText;
 
     @JsonProperty("parts")
     protected int mCount;
 
-    /**
-     * @param state Status of message
-     */
-    public void setmStateText(String state){
-        mStateText = state;
+    public int getCount() {
+        return mCount;
     }
 
-    /**
-     * @return Status of message
-     */
-    public int getState(){
-        return MessageState.Parse(mStateText);
-    }
-
-    /**
-     * @return Price for message
-     */
     public float getCost() {
         return mCost;
     }
 
-    /**
-     * @return Name of currency
-     */
-    public String getCurrency() {
-        return mCurrency;
-    }
+    public int getState(){
+        return MessageState.Parse(mStatusText);
 
-    /**
-     * @return Number of message parts
-     */
-    public int getCount() {
-        return mCount;
     }
 }

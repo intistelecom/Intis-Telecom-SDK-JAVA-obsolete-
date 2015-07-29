@@ -1,6 +1,7 @@
 package com.intis.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intis.sdk.entity.*;
 import com.intis.sdk.exceptions.*;
@@ -8,10 +9,7 @@ import sun.nio.ch.Net;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class IntisClient extends AClient {
@@ -272,32 +270,26 @@ public class IntisClient extends AClient {
         }
     }
 
-//    public List<DailyStats> getDailyStatsByMonth(int year, int month) throws DailyStatsException
-//    {
-//        LocalDate date = LocalDate.of(year, month, 1);
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
-//
-//        Map<String, String> parameters = new HashMap<String, String>();
-//        parameters.put("month", date.format(formatter));
-//        String content = getContent("stat_by_month", parameters);
-//
-//        try{
-//            List<DailyStats> list =  new ArrayList<DailyStats>();
-//            Map<String, Map<String, Stats[]>> map;
-//            ObjectMapper mapper = new ObjectMapper();
-//
-//            map = mapper.readValue(content, new TypeReference<HashMap<String, Map<String, Stats[]>>>() {});
-//
-//            for(Map.Entry<String, Map<String, Stats[]>> entry : map.entrySet()) {
-//
-//            }
-//
-//            return list;
-//        }
-//        catch (Exception ex) {
-//            throw new DailyStatsException(parameters, ex);
-//        }
-//    }
+    public List<DailyStats> getDailyStatsByMonth(int year, int month) throws DailyStatsException
+    {
+        LocalDate date = LocalDate.of(year, month, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("month", date.format(formatter));
+        String content = getContent("stat_by_month", parameters);
+
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+
+            List<DailyStats> list = mapper.readValue(content, new TypeReference<List<DailyStats>>(){});
+
+            return list;
+        }
+        catch (Exception ex) {
+            throw new DailyStatsException(parameters, ex);
+        }
+    }
 
     public List<HLRResponse> makeHlrRequest(String[] phone) throws HLRResponseException {
         Map<String, String> parameters = new HashMap<String, String>();
