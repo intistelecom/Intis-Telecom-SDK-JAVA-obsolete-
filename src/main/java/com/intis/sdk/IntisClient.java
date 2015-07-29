@@ -12,10 +12,15 @@ import java.util.*;
 
 public class IntisClient extends AClient implements IClient {
 
-    public IntisClient(String login, String apiKey, String apiHost) {
+    public IntisClient(String login, String apiKey, String apiHost, IApiConnector apiConnector) {
+        super(apiConnector);
         mLogin = login;
         mApiKey = apiKey;
         mApiHost = apiHost;
+    }
+
+    public IntisClient(String login, String apiKey, String apiHost) {
+        this(login, apiKey, apiHost, null);
     }
 
     public Balance getBalance() throws BalanceException {

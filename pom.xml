@@ -18,5 +18,9 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId></groupId>
+            <artifactId>mockito</artifactId>
+        </dependency>
     </dependencies>
 </project>
