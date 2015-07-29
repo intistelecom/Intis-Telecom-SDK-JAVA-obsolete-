@@ -12,30 +12,32 @@ import static org.junit.Assert.*;
 
 public class HLRStatItemTest {
 
+    private String login = "rso";
+    private String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";
+    private String apiHost = "http://dev.sms16.ru/get/";
+
     @Test
-    public void testMakeHlrRequest() {
-
-        String login = "rso";
-        String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";
-        String apiHost = "http://dev.sms16.ru/get/";
-
+    public void getHlrStats() throws HLRStatItemException{
         IntisClient client = new IntisClient(login, apiKey, apiHost);
 
-        try {
-            String from = "2014-07-01";
-            String to = "2014-10-01";
-            List<HLRStatItem> bases = client.getHlrStats(from, to);
+        String from = "2014-07-01";
+        String to = "2014-10-01";
+        List<HLRStatItem> bases = client.getHlrStats(from, to);
 
-            for (HLRResponse item : bases) {
-                System.out.print("id - " + item.getId());
-                System.out.print("imsi - " + item.getImsi());
-                System.out.print("original country code - " + item.getOriginalCountryCode());
-            }
-            assertTrue(bases.size() > 0);
+        for (HLRResponse item : bases) {
+            System.out.println("id - " + item.getId());
+            System.out.println("imsi - " + item.getImsi());
+            System.out.println("original country code - " + item.getOriginalCountryCode());
         }
-        catch (HLRStatItemException e)
-        {
-            e.printStackTrace();
-        }
+        assertTrue(bases.size() > 0);
+    }
+
+    @Test(expected = HLRStatItemException.class)
+    public void getHlrStatsWidthException() throws HLRStatItemException{
+        IntisClient client = new IntisClient(login, apiKey, apiHost);
+
+        String from = "ee";
+        String to = "2014-10-01";
+        List<HLRStatItem> bases = client.getHlrStats(from, to);
     }
 }

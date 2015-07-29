@@ -12,29 +12,30 @@ import static org.junit.Assert.*;
 
 public class DeliveryStatusTest {
 
+    private String login = "rso";
+    private String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";
+    private String apiHost = "http://dev.sms16.ru/get/";
+
     @Test
-    public void testGetDeliveryStatus() {
-
-        String login = "rso";
-        String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";
-        String apiHost = "http://dev.sms16.ru/get/";
-
+    public void getDeliveryStatus() throws DeliveryStatusException{
         IntisClient client = new IntisClient(login, apiKey, apiHost);
 
-        try {
-            String[] messages = {"4334273170107615820011"};
-            List<DeliveryStatus> bases = client.getDeliveryStatus(messages);
+        String[] messages = {"4381960011347047370003"};
+        List<DeliveryStatus> bases = client.getDeliveryStatus(messages);
 
-            for (DeliveryStatus item : bases) {
-                System.out.print("messageId - " + item.getMessageId());
-                System.out.print("status - " + item.getMessageStatus());
-                System.out.print("created - " + item.getCreatedAt());
-            }
-            assertTrue(bases.size() > 0);
+        for (DeliveryStatus item : bases) {
+            System.out.print("messageId - " + item.getMessageId());
+            System.out.print("status - " + item.getMessageStatus());
+            System.out.print("created - " + item.getCreatedAt());
         }
-        catch (DeliveryStatusException e)
-        {
-            e.printStackTrace();
-        }
+        assertTrue(bases.size() > 0);
+    }
+
+    @Test(expected = DeliveryStatusException.class)
+    public void getDeliveryStatusWidthException() throws DeliveryStatusException{
+        IntisClient client = new IntisClient(login, apiKey, apiHost);
+
+        String[] messages = {"433427317010761582001133"};
+        List<DeliveryStatus> bases = client.getDeliveryStatus(messages);
     }
 }

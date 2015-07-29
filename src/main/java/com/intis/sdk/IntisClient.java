@@ -126,14 +126,13 @@ public class IntisClient extends AClient implements IClient {
 
         try {
             String content = getContent("status", parameters);
-
+System.out.println(content);
             List<DeliveryStatus> deliveryStatus = new ArrayList<DeliveryStatus>();
 
             Map<String, DeliveryStatus> map;
             ObjectMapper mapper = new ObjectMapper();
 
-            map = mapper.readValue(content, new TypeReference<HashMap<String, DeliveryStatus>>() {
-            });
+            map = mapper.readValue(content, new TypeReference<HashMap<String, DeliveryStatus>>() {});
 
             for (Map.Entry<String, DeliveryStatus> entry : map.entrySet()) {
                 String MessageId = entry.getKey();
@@ -284,13 +283,14 @@ public class IntisClient extends AClient implements IClient {
 
     public List<DailyStats> getDailyStatsByMonth(Integer year, Integer month) throws DailyStatsException
     {
-        LocalDate date = LocalDate.of(year, month, 1);
+        Map<String, String> parameters = new HashMap<String, String>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
 
-        Map<String, String> parameters = new HashMap<String, String>();
-        parameters.put("month", date.format(formatter));
+        LocalDate date;
+        try {
+            date = LocalDate.of(year, month, 1);
+            parameters.put("month", date.format(formatter));
 
-        try{
             String content = getContent("stat_by_month", parameters);
 
             ObjectMapper mapper = new ObjectMapper();
@@ -299,8 +299,9 @@ public class IntisClient extends AClient implements IClient {
 
             return list;
         }
-        catch (Exception ex) {
-            throw new DailyStatsException(parameters, ex);
+        catch (Exception e){
+            parameters.put("month", year + "-" + month);
+            throw new DailyStatsException(parameters, e);
         }
     }
 

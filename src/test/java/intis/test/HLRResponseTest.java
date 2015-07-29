@@ -12,29 +12,30 @@ import static org.junit.Assert.*;
 
 public class HLRResponseTest {
 
+    private String login = "rso";
+    private String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";
+    private String apiHost = "http://dev.sms16.ru/get/";
+
     @Test
-    public void testMakeHlrRequest() {
-
-        String login = "rso";
-        String apiKey = "afa1748a75c0d796079d681e25d271a2c7916327";
-        String apiHost = "http://dev.sms16.ru/get/";
-
+    public void makeHlrRequest() throws HLRResponseException{
         IntisClient client = new IntisClient(login, apiKey, apiHost);
 
-        try {
-            String[] phones = {"79802503672"};
-            List<HLRResponse> bases = client.makeHlrRequest(phones);
+        String[] phones = {"79802503672"};
+        List<HLRResponse> bases = client.makeHlrRequest(phones);
 
-            for (HLRResponse item : bases) {
-                System.out.print("id - " + item.getId());
-                System.out.print("imsi - " + item.getImsi());
-                System.out.print("original country code - " + item.getOriginalCountryCode());
-            }
-            assertTrue(bases.size() > 0);
+        for (HLRResponse item : bases) {
+            System.out.print("id - " + item.getId());
+            System.out.print("imsi - " + item.getImsi());
+            System.out.print("original country code - " + item.getOriginalCountryCode());
         }
-        catch (HLRResponseException e)
-        {
-            e.printStackTrace();
-        }
+        assertTrue(bases.size() > 0);
+    }
+
+    @Test(expected = HLRResponseException.class)
+    public void makeHlrRequestWidthException() throws HLRResponseException{
+        IntisClient client = new IntisClient(login, apiKey, apiHost);
+
+        String[] phones = {"79802503672"};
+        List<HLRResponse> bases = client.makeHlrRequest(phones);
     }
 }
