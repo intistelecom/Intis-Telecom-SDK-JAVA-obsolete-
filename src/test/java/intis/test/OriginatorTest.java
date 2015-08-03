@@ -18,7 +18,8 @@ public class OriginatorTest {
 
     @Test
     public void getOriginator() throws OriginatorException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         List<Originator> bases = client.getOriginators();
 
@@ -32,7 +33,18 @@ public class OriginatorTest {
 
     @Test(expected = OriginatorException.class)
     public void getOriginatorWidthException() throws OriginatorException{
-        IntisClient client = new IntisClient(login + "--", apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
         List<Originator> bases = client.getOriginators();
+    }
+
+    private String getData()
+    {
+        return "{\"smstest\":\"completed\",\"Stok&Sekond\":\"completed\",\"chmvm\":\"completed\",\"rsoTEST\":\"completed\"}";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }

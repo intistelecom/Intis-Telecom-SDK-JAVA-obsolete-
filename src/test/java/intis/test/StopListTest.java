@@ -15,7 +15,8 @@ public class StopListTest {
 
     @Test
     public void checkStopList() throws StopListException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         StopList check = client.checkStopList("79000000000");
         System.out.println("description - " + check.getDescription());
@@ -27,8 +28,19 @@ public class StopListTest {
 
     @Test(expected = StopListException.class)
     public void checkStopListWidthException() throws StopListException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         StopList check = client.checkStopList("7900000000000");
+    }
+
+    private String getData()
+    {
+        return "{\"4494794\":{\"time_in\":\"2015-07-31 22:55:00\",\"description\":\"test\"}}";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }

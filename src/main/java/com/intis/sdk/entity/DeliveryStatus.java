@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class DeliveryStatus {
 
-    @JsonProperty("messageId")
     private String messageId;
 
     @JsonProperty("status")

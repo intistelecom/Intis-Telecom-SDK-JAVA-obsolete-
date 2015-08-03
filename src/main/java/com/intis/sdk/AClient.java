@@ -31,6 +31,8 @@ public abstract class AClient {
     public AClient(IApiConnector apiConnector){
         if (apiConnector == null)
             this.apiConnector = new HttpApiConnector();
+        else
+            this.apiConnector = apiConnector;
     }
 
     public String getContent(String scriptName, Map<String, String> parameters) throws SDKException, SDKSerializationException{
@@ -50,7 +52,7 @@ public abstract class AClient {
     private String getTimestamp(){
         String url = mApiHost + "timestamp.php";
 
-        String result = apiConnector.getContentFromApi(url);
+        String result = apiConnector.getTimestampFromApi(url);
 
         return result;
     }

@@ -15,7 +15,8 @@ public class BalanceTest {
 
     @Test
     public void getBalance() throws BalanceException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         Balance balance = client.getBalance();
         String amount = balance.getAmount();
@@ -29,7 +30,18 @@ public class BalanceTest {
 
     @Test(expected = BalanceException.class)
     public void getBalanceWidthException() throws BalanceException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
         Balance balance = client.getBalance();
+    }
+
+    private String getData()
+    {
+        return "{\"money\":4, \"currency\":\"RUB\"}";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }

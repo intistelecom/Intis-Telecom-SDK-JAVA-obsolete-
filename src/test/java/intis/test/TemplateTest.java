@@ -19,7 +19,8 @@ public class TemplateTest {
 
     @Test
     public void testGetBalance() throws TemplateException {
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         List<Template> templates = client.getTemplates();
         for (Template item : templates) {
@@ -33,7 +34,18 @@ public class TemplateTest {
 
     @Test(expected = TemplateException.class)
     public void getHlrStatsWidthException() throws TemplateException{
-        IntisClient client = new IntisClient(login + "--", apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
         List<Template> templates = client.getTemplates();
+    }
+
+    private String getData()
+    {
+        return "{\"25583\":{\"name\":\"newtemplate\",\"template\":\"Hello! #first-name# #last-name#! Your amount is #note1#\",\"up_time\":\"2015-03-31 15:22:50\"},\"25586\":{\"name\":\"test1\",\"template\":\"template for test1\",\"up_time\":\"2015-07-29 15:37:47\"},\"25582\":{\"name\":\"vnb cv\",\"template\":\"test\",\"up_time\":\"2015-03-30 17:34:39\"}}";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }

@@ -18,7 +18,8 @@ public class PhoneBasesTest {
 
     @Test
     public void getPhoneBases() throws PhoneBasesException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         List<PhoneBase> bases = client.getPhoneBases();
         for (PhoneBase item : bases) {
@@ -39,8 +40,20 @@ public class PhoneBasesTest {
 
     @Test(expected = PhoneBasesException.class)
     public void getPhoneBasesWidthException() throws PhoneBasesException{
-        IntisClient client = new IntisClient(login + "--", apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         List<PhoneBase> bases = client.getPhoneBases();
+    }
+
+    private String getData()
+    {
+        return "{\"125480\":{\"name\":\"989878979\",\"time_birth\":\"12:00:00\",\"day_before\":\"0\",\"local_time\":\"1\",\"birth_sender\":\"\",\"birth_text\":\"\",\"on_birth\":\"0\",\"count\":\"0\",\"pages\":0}," +
+                "\"125473\":{\"name\":\"654564\",\"time_birth\":\"12:00:00\",\"day_before\":\"0\",\"local_time\":\"1\",\"birth_sender\":\"\",\"birth_text\":\"\",\"on_birth\":\"0\",\"count\":\"367\",\"pages\":4}}";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }

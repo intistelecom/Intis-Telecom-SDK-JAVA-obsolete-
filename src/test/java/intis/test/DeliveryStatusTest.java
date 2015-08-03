@@ -18,9 +18,10 @@ public class DeliveryStatusTest {
 
     @Test
     public void getDeliveryStatus() throws DeliveryStatusException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
-        String[] messages = {"4381960011347047370003"};
+        String[] messages = {"4385937961543210880001"};
         List<DeliveryStatus> bases = client.getDeliveryStatus(messages);
 
         for (DeliveryStatus item : bases) {
@@ -33,9 +34,20 @@ public class DeliveryStatusTest {
 
     @Test(expected = DeliveryStatusException.class)
     public void getDeliveryStatusWidthException() throws DeliveryStatusException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         String[] messages = {"433427317010761582001133"};
-        List<DeliveryStatus> bases = client.getDeliveryStatus(messages);
+        client.getDeliveryStatus(messages);
+    }
+
+    private String getData()
+    {
+        return "{\"4385937961543210880001\":{\"status\":\"deliver\", \"time\":\"2014-10-05\"},\"4385937961543210880002\":{\"status\":\"not_deliver\", \"time\":\"2014-10-01\"}}";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }

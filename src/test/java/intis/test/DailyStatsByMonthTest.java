@@ -18,7 +18,8 @@ public class DailyStatsByMonthTest {
 
     @Test
     public void makeHlrRequest() throws DailyStatsException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         List<DailyStats> bases = client.getDailyStatsByMonth(2015, 2);
 
@@ -36,7 +37,20 @@ public class DailyStatsByMonthTest {
 
     @Test(expected = DailyStatsException.class)
     public void makeHlrRequestWidthException() throws DailyStatsException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
         List<DailyStats> bases = client.getDailyStatsByMonth(2015, 15);
+    }
+
+    private String getData()
+    {
+        return "[{\"date\":\"2014-10-02\",\"stats\":[{\"status\":\"deliver\",\"cost\":\"1.000\",\"parts\":\"2\"},{\"status\":\"not_deliver\",\"cost\":\"0.500\",\"parts\":\"1\"}]}," +
+                "{\"date\":\"2014-10-13\",\"stats\":[{\"status\":\"deliver\",\"cost\":\"161.850\",\"parts\":\"358\"},{\"status\":\"expired\",\"cost\":\"1.650\",\"parts\":\"4\"},{\"status\":\"not_deliver\",\"cost\":\"87.700\",\"parts\":\"198\"}]}," +
+                "{\"date\":\"2014-10-31\",\"stats\":[{\"status\":\"not_deliver\",\"cost\":\"211.200\",\"parts\":\"459\"},{\"status\":\"deliver\",\"cost\":\"327.950\",\"parts\":\"712\"}]}]";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }

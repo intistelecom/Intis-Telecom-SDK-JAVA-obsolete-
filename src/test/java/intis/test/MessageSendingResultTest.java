@@ -18,7 +18,8 @@ public class MessageSendingResultTest {
 
     @Test
     public void sendMessage() throws MessageSendingResultException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         String[] phone = {"79804444444", "79655555555"};
         List<MessageSendingResult> bases = client.sendMessage(phone, "smstest", "test sms");
@@ -33,9 +34,20 @@ public class MessageSendingResultTest {
 
     @Test(expected = MessageSendingResultException.class)
     public void sendMessageWidthException() throws MessageSendingResultException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         String[] phone = {};
         List<MessageSendingResult> bases = client.sendMessage(phone, "smstest", "test sms");
+    }
+
+    private String getData()
+    {
+        return "{\"79802002020\":{\"error\":\"0\",\"id_sms\":\"4384607771347164730001\",\"cost\":1,\"count_sms\":1,\"sender\":\"smstest\",\"network\":\" Russia MTC\",\"ported\":0},\"79009009091\":{\"error\":31}}";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }

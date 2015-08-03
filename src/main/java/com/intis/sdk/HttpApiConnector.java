@@ -31,4 +31,8 @@ public class HttpApiConnector  implements IApiConnector{
         }
         return result;
     }
+
+    public String getTimestampFromApi(String link){
+       return  getContentFromApi(link);
+    }
 }

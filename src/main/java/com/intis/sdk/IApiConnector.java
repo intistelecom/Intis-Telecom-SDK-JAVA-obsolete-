@@ -8,4 +8,9 @@ public interface IApiConnector {
      * Getting data from API.
      */
     String getContentFromApi(String link);
+
+    /**
+     * Getting timestamp from API.
+     */
+    String getTimestampFromApi(String link);
 }

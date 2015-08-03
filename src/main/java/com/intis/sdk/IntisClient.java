@@ -126,7 +126,7 @@ public class IntisClient extends AClient implements IClient {
 
         try {
             String content = getContent("status", parameters);
-System.out.println(content);
+
             List<DeliveryStatus> deliveryStatus = new ArrayList<DeliveryStatus>();
 
             Map<String, DeliveryStatus> map;
@@ -312,16 +312,9 @@ System.out.println(content);
         try {
             String content = getContent("hlr", parameters);
 
-            List<HLRResponse> items = new ArrayList<HLRResponse>();
-
-            Map<Long, HLRResponse> map;
             ObjectMapper mapper = new ObjectMapper();
 
-            map = mapper.readValue(content, new TypeReference<HashMap<Long, HLRResponse>>() {
-            });
-            for (Map.Entry<Long, HLRResponse> entry : map.entrySet()) {
-                items.add(entry.getValue());
-            }
+            List<HLRResponse> items = mapper.readValue(content, new TypeReference<List<HLRResponse>>() {});
 
             return items;
         } catch (Exception ex) {

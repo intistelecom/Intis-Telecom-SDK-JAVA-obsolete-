@@ -15,7 +15,8 @@ public class NetworkTest {
 
     @Test
     public void getNetworkByPhone() throws NetworkException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         Network network = client.getNetworkByPhone("89808887777");
         String title = network.getTitle();
@@ -26,8 +27,19 @@ public class NetworkTest {
 
     @Test(expected = NetworkException.class)
     public void getNetworkByPhoneWidthException() throws NetworkException{
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         Network network = client.getNetworkByPhone("8980888777744");
+    }
+
+    private String getData()
+    {
+        return "{\"operator\" : \"AT&T\"}";
+    }
+
+    private String getErrorData()
+    {
+        return "{\"error\":4}";
     }
 }
