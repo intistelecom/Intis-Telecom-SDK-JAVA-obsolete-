@@ -1,3 +1,26 @@
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 Intis Telecom
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.intis.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -6,26 +29,33 @@ import com.intis.sdk.exceptions.*;
 import com.sun.deploy.util.StringUtils;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URLEncoder;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+/**
+ * Class AClient
+ * The main class for working with API
+ */
 public abstract class AClient {
+
     /**
      * User?s login
      */
     protected String mLogin;
+
     /**
      * SDK key
      */
     protected String mApiKey;
+
     /**
      * SDK address
      */
     protected String mApiHost;
 
+    /**
+     * IApiConnector API data connector
+     */
     protected IApiConnector apiConnector;
 
     public AClient(IApiConnector apiConnector){
@@ -35,6 +65,14 @@ public abstract class AClient {
             this.apiConnector = apiConnector;
     }
 
+    /**
+     * Getting content using parameters and name of API script
+     *
+     * @param scriptName Name of API script
+     * @param parameters map of parameters
+     *
+     * @return data as an string
+     */
     public String getContent(String scriptName, Map<String, String> parameters) throws SDKException, SDKSerializationException{
         Map<String, String> allParameters = getParameters(parameters);
         String url = mApiHost + scriptName + ".php?" + urlEncodeUTF8(allParameters);
@@ -48,6 +86,8 @@ public abstract class AClient {
 
     /**
      * Getting time in UNIX format from the file timestamp.php in API
+     *
+     * @return timestamp
      */
     private String getTimestamp(){
         String url = mApiHost + "timestamp.php";
@@ -70,7 +110,7 @@ public abstract class AClient {
     }
 
     /**
-     * Get phone numbers from list
+     * Get all API parameters
      */
     private Map<String, String> getParameters(Map<String, String> more) {
         Map<String, String> parameters = getBaseParameters();
@@ -87,6 +127,9 @@ public abstract class AClient {
 
     /**
      * Getting signatures by incoming parameters
+     *
+     * @param parameters values of query parameters
+     * @return hash
      */
     private String getSignature(Map<String, String> parameters) {
         Collection<String> str = parameters.values();
@@ -95,6 +138,12 @@ public abstract class AClient {
         return MD5(strParameters);
     }
 
+    /**
+     * Generating Hash from String
+     *
+     * @param md5 line parameters
+     * @return hash
+     */
     private String MD5(String md5){
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
@@ -110,6 +159,12 @@ public abstract class AClient {
         return null;
     }
 
+    /**
+     * Translates a string into {@code application/x-www-form-urlencoded}
+     *
+     * @param s query parameter
+     * @return parameter UTP-8
+     */
     private static String urlEncodeUTF8(String s) {
         try {
             return URLEncoder.encode(s, "UTF-8");
@@ -118,6 +173,12 @@ public abstract class AClient {
         }
     }
 
+    /**
+     * Translates a URL parameters into {@code application/x-www-form-urlencoded}
+     *
+     * @param map URL parameters
+     * @return query string
+     */
     private String urlEncodeUTF8(Map<String, String> map) {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, String> entry : map.entrySet()) {

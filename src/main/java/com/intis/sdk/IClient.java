@@ -1,3 +1,26 @@
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 Intis Telecom
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.intis.sdk;
 
 import com.intis.sdk.entity.*;
@@ -20,13 +43,13 @@ public interface IClient {
     Balance getBalance() throws BalanceException;
     /**
      * Getting user lists
-     * @return PhoneBase[]
+     * @return list of phone base
      */
     List<PhoneBase> getPhoneBases() throws PhoneBasesException;
 
     /**
      * Get sender names
-     * @return Originator[]
+     * @return list of senders with its statuses
      */
     List<Originator> getOriginators() throws OriginatorException;
 
@@ -34,14 +57,14 @@ public interface IClient {
      * Get phone numbers from list
      * @param baseId - List ID
      * @param page - Page number
-     * @return PhoneBaseItem[]
+     * @return list subscribers
      */
     List<PhoneBaseItem> getPhoneBaseItems(Integer baseId, Integer page) throws PhoneBaseItemException;
 
     /**
      * Get information of message status
      * @param messageId - Message ID
-     * @return PhoneBaseItem[]
+     * @return list of message status
      */
     List<DeliveryStatus> getDeliveryStatus(String[] messageId) throws DeliveryStatusException;
 
@@ -50,27 +73,27 @@ public interface IClient {
      * @param phone - Phone number
      * @param originator - Sender name (one of the approved in your account)
      * @param text - SMS text
-     * @return Message ID
+     * @return results list
      */
     List<MessageSendingResult> sendMessage(String[] phone, String originator, String text) throws MessageSendingResultException;
 
     /**
      * Search of number in stop list
      * @param phone - Phone number
-     * @return StopList
+     * @return stop list
      */
     StopList checkStopList(String phone) throws StopListException;
 
     /**
      * Add number to stop list
      * @param phone - Phone number
-     * @return ID
+     * @return ID in stop list
      */
     Long addToStopList(String phone) throws AddToStopListException;
 
     /**
      * Get list of templates
-     * @return Template[]
+     * @return list of templates
      */
     List<Template> getTemplates() throws TemplateException;
 
@@ -78,7 +101,7 @@ public interface IClient {
      * Add a template
      * @param title - Template name
      * @param template - Template
-     * @return ID
+     * @return ID in the template list
      */
     Long addTemplate(String title, String template) throws AddTemplateException;
 
@@ -86,14 +109,14 @@ public interface IClient {
      * Get statistics for a month by days
      * @param year - Year
      * @param month - Month
-     * @return DailyStats[]
+     * @return statistics
      */
     List<DailyStats> getDailyStatsByMonth(Integer year, Integer month) throws DailyStatsException;
 
     /**
      * HLR request
      * @param phone - Phone number
-     * @return HLRResponse[]
+     * @return results list
      */
     List<HLRResponse> makeHlrRequest(String[] phone) throws HLRResponseException;
 
@@ -101,21 +124,21 @@ public interface IClient {
      * Statistics of HLR requests
      * @param from - Initial date in the format YYYY-MM-DD
      * @param to - Final date in the format YYYY-MM-DD
-     * @return HLRStatItem[]
+     * @return statuses
      */
     List<HLRStatItem> getHlrStats(String from, String to) throws HLRStatItemException;
 
     /**
      * Get operator
      * @param phone - Phone number
-     * @return Network
+     * @return operator
      */
     Network getNetworkByPhone(String phone) throws NetworkException;
 
     /**
      * Get incoming SMS
      * @param date - Date in the format YYYY-MM-DD
-     * @return IncomingMessage[]
+     * @return list of incoming messages
      */
     List<IncomingMessage> getIncomingMessages(String date) throws IncomingMessageException;
 }

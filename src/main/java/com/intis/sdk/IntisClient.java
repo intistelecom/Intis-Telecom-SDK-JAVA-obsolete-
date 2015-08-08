@@ -1,3 +1,26 @@
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 Intis Telecom
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.intis.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -9,9 +32,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-
+/**
+ * Class IntisClient
+ * The main class for SMS sending and getting API information
+ */
 public class IntisClient extends AClient implements IClient {
 
+    /**
+     * Class constructor
+     *
+     * @param login user login
+     * @param apiKey user API key
+     * @param apiHost API address
+     * @param apiConnector API data connector
+     */
     public IntisClient(String login, String apiKey, String apiHost, IApiConnector apiConnector) {
         super(apiConnector);
         mLogin = login;
@@ -19,10 +53,23 @@ public class IntisClient extends AClient implements IClient {
         mApiHost = apiHost;
     }
 
+    /**
+     * Class constructor
+     *
+     * @param login user login
+     * @param apiKey user API key
+     * @param apiHost API address
+     */
     public IntisClient(String login, String apiKey, String apiHost) {
         this(login, apiKey, apiHost, null);
     }
 
+    /**
+     * Getting user balance
+     *
+     * @throws BalanceException
+     * @return Balance
+     */
     public Balance getBalance() throws BalanceException {
         Map<String, String> parameters = new HashMap<String, String>();
 
@@ -37,6 +84,12 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting all user lists
+     *
+     * @throws PhoneBasesException
+     * @return list of phone base
+     */
     public List<PhoneBase> getPhoneBases() throws PhoneBasesException {
         Map<String, String> parameters = new HashMap<String, String>();
 
@@ -64,6 +117,12 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting all user sender names
+     *
+     * @throws OriginatorException
+     * @return list of senders with its statuses
+     */
     public List<Originator> getOriginators() throws OriginatorException {
         Map<String, String> parameters = new HashMap<String, String>();
 
@@ -88,6 +147,15 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting subscribers of list
+     *
+     * @param baseId List ID
+     * @param page Page of list
+     *
+     * @throws PhoneBaseItemException
+     * @return list subscribers
+     */
     public List<PhoneBaseItem> getPhoneBaseItems(Integer baseId, Integer page) throws PhoneBaseItemException {
         if (page.equals(null))
             page = 1;
@@ -120,6 +188,14 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting message status
+     *
+     * @param messageId Message ID
+     *
+     * @throws DeliveryStatusException
+     * @return list of message status
+     */
     public List<DeliveryStatus> getDeliveryStatus(String[] messageId) throws DeliveryStatusException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("state", String.join(",", messageId));
@@ -147,6 +223,16 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * SMS sending
+     *
+     * @param phone phone number(s)
+     * @param originator sender name
+     * @param text sms text
+     *
+     * @throws MessageSendingResultException
+     * @return results list
+     */
     public List<MessageSendingResult> sendMessage(String[] phone, String originator, String text) throws MessageSendingResultException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", String.join(",", phone));
@@ -191,6 +277,14 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Testing phone number for stop list
+     *
+     * @param phone phone number
+     *
+     * @throws StopListException
+     * @return stop list
+     */
     public StopList checkStopList(String phone) throws StopListException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", phone);
@@ -214,6 +308,14 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Adding number to stop list
+     *
+     * @param phone phone number
+     *
+     * @throws AddToStopListException
+     * @return  ID in stop list
+     */
     public Long addToStopList(String phone) throws AddToStopListException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", phone);
@@ -234,6 +336,12 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting user templates
+     *
+     * @throws TemplateException
+     * @return list of templates
+     */
     public List<Template> getTemplates() throws TemplateException {
         Map<String, String> parameters = new HashMap<String, String>();
 
@@ -261,6 +369,15 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Adding user template
+     *
+     * @param title template name
+     * @param template text of template
+     *
+     * @throws AddTemplateException
+     * @return ID in the template list
+     */
     public Long addTemplate(String title, String template) throws AddTemplateException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("name", title);
@@ -281,6 +398,15 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting statistics for the certain month
+     *
+     * @param year year
+     * @param month month
+     *
+     * @throws DailyStatsException
+     * @return statistics
+     */
     public List<DailyStats> getDailyStatsByMonth(Integer year, Integer month) throws DailyStatsException
     {
         Map<String, String> parameters = new HashMap<String, String>();
@@ -305,6 +431,14 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Sending HLR request for number
+     *
+     * @param phone phone number
+     *
+     * @throws HLRResponseException
+     * @return results list
+     */
     public List<HLRResponse> makeHlrRequest(String[] phone) throws HLRResponseException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", String.join(",", phone));
@@ -322,6 +456,15 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting statuses of HLR request
+     *
+     * @param from
+     * @param to
+     *
+     * @throws HLRStatItemException
+     * @return statuses
+     */
     public List<HLRStatItem> getHlrStats(String from, String to) throws HLRStatItemException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("from", from);
@@ -346,6 +489,14 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting the operator of subscriber phone number
+     *
+     * @param phone phone number
+     *
+     * @throws NetworkException
+     * @return operator
+     */
     public Network getNetworkByPhone(String phone) throws NetworkException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("phone", phone);
@@ -362,6 +513,14 @@ public class IntisClient extends AClient implements IClient {
         }
     }
 
+    /**
+     * Getting incoming messages of certain date
+     *
+     * @param date date
+     *
+     * @throws IncomingMessageException
+     * @return list of incoming messages
+     */
     public List<IncomingMessage> getIncomingMessages(String date) throws IncomingMessageException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("date", date);
