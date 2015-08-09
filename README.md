@@ -100,8 +100,7 @@ for (PhoneBaseItem item : bases) {
 }
 ```
 
-Для получения информации по статусам отправленных СМС используется функция `getDeliveryStatus(messageId)` messageId - ID отправленного сообщения.
-(Возможна передача в качестве параметра ID одного или нескольких статусов массивом или строкой через запятую).
+Для получения информации по статусам отправленных СМС используется функция `getDeliveryStatus(messageId)` messageId - массив ID отправленных сообщений.
 ```java
 List<DeliveryStatus> bases = client.getDeliveryStatus(messages);
 
