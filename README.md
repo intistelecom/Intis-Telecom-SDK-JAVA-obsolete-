@@ -153,7 +153,7 @@ for (Template item : templates) {
     item.getId();                 // Getting template ID
     item.getTitle();              // Getting template name
     item.getTemplate();           // Getting text of template
-    item.getCreatedAt();          // Получение времени создания шаблона
+    item.getCreatedAt();          // Getting the date and time when a particular template was created
 }
 ```
 
