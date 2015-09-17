@@ -40,7 +40,7 @@ public class NetworkTest {
         LocalApiConnector connector = new LocalApiConnector(this.getData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
-        Network network = client.getNetworkByPhone("89808887777");
+        Network network = client.getNetworkByPhone("442073238000");
         String title = network.getTitle();
         System.out.println(title);
         boolean aTrue = title.isEmpty();
@@ -52,7 +52,7 @@ public class NetworkTest {
         LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
-        Network network = client.getNetworkByPhone("8980888777744");
+        Network network = client.getNetworkByPhone("442073238000");
     }
 
     private String getData()

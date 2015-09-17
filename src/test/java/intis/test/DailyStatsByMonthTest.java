@@ -66,9 +66,9 @@ public class DailyStatsByMonthTest {
 
     private String getData()
     {
-        return "[{\"date\":\"2014-10-02\",\"stats\":[{\"status\":\"deliver\",\"cost\":\"1.000\",\"parts\":\"2\"},{\"status\":\"not_deliver\",\"cost\":\"0.500\",\"parts\":\"1\"}]}," +
-                "{\"date\":\"2014-10-13\",\"stats\":[{\"status\":\"deliver\",\"cost\":\"161.850\",\"parts\":\"358\"},{\"status\":\"expired\",\"cost\":\"1.650\",\"parts\":\"4\"},{\"status\":\"not_deliver\",\"cost\":\"87.700\",\"parts\":\"198\"}]}," +
-                "{\"date\":\"2014-10-31\",\"stats\":[{\"status\":\"not_deliver\",\"cost\":\"211.200\",\"parts\":\"459\"},{\"status\":\"deliver\",\"cost\":\"327.950\",\"parts\":\"712\"}]}]";
+        return "[{\"date\":\"2015-02-02\",\"stats\":[{\"status\":\"deliver\",\"cost\":\"1.000\",\"parts\":\"2\"},{\"status\":\"not_deliver\",\"cost\":\"0.500\",\"parts\":\"1\"}]}," +
+                "{\"date\":\"2015-02-13\",\"stats\":[{\"status\":\"deliver\",\"cost\":\"161.850\",\"parts\":\"358\"},{\"status\":\"expired\",\"cost\":\"1.650\",\"parts\":\"4\"},{\"status\":\"not_deliver\",\"cost\":\"87.700\",\"parts\":\"198\"}]}," +
+                "{\"date\":\"2015-02-20\",\"stats\":[{\"status\":\"not_deliver\",\"cost\":\"211.200\",\"parts\":\"459\"},{\"status\":\"deliver\",\"cost\":\"327.950\",\"parts\":\"712\"}]}]";
     }
 
     private String getErrorData()

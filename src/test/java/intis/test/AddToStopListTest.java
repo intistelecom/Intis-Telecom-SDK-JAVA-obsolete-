@@ -40,7 +40,7 @@ public class AddToStopListTest {
         LocalApiConnector connector = new LocalApiConnector(this.getData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
-        Long id = client.addToStopList("89808888887");
+        Long id = client.addToStopList("442073238000");
         System.out.println(id);
         assertNotNull(id);
     }
@@ -49,7 +49,7 @@ public class AddToStopListTest {
     public void addToStopListWidthException() throws AddToStopListException{
         LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
-        Long id = client.addToStopList("89808888888");
+        Long id = client.addToStopList("442073238000");
     }
 
     private String getData()

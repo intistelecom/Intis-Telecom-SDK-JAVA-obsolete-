@@ -40,7 +40,7 @@ public class StopListTest {
         LocalApiConnector connector = new LocalApiConnector(this.getData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
-        StopList check = client.checkStopList("79000000000");
+        StopList check = client.checkStopList("442073238000");
         System.out.println("description - " + check.getDescription());
         System.out.println("time - " + check.getTimeAddedAt());
         System.out.println("id - " + check.getId());
@@ -53,7 +53,7 @@ public class StopListTest {
         LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
-        StopList check = client.checkStopList("7900000000000");
+        StopList check = client.checkStopList("442073238000");
     }
 
     private String getData()

@@ -43,7 +43,7 @@ public class MessageSendingResultTest {
         LocalApiConnector connector = new LocalApiConnector(this.getData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
-        String[] phone = {"79804444444", "79655555555"};
+        String[] phone = {"442073238000", "442073238001"};
         List<MessageSendingResult> bases = client.sendMessage(phone, "smstest", "test sms");
 
         for (MessageSendingResult item : bases) {
@@ -65,7 +65,7 @@ public class MessageSendingResultTest {
 
     private String getData()
     {
-        return "{\"79802002020\":{\"error\":\"0\",\"id_sms\":\"4384607771347164730001\",\"cost\":1,\"count_sms\":1,\"sender\":\"smstest\",\"network\":\" Russia MTC\",\"ported\":0},\"79009009091\":{\"error\":31}}";
+        return "{\"442073238000\":{\"error\":\"0\",\"id_sms\":\"4384607771347164730001\",\"cost\":1,\"count_sms\":1,\"sender\":\"smstest\",\"network\":\"Landline\",\"ported\":0},\"442073238000\":{\"error\":31}}";
     }
 
     private String getErrorData()
