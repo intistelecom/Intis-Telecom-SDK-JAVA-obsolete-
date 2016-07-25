@@ -399,6 +399,30 @@ public class IntisClient extends AClient implements IClient {
     }
 
     /**
+     * Remove user template
+     *
+     * @param name template name
+     *
+     * @throws RemoveTemplateException
+     * @return RemoveTemplateResponse
+     */
+    public RemoveTemplateResponse removeTemplate(String name) throws RemoveTemplateException {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("name", name);
+        try {
+            String content = getContent("del_template", parameters);
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            RemoveTemplateResponse response = mapper.readValue(content, RemoveTemplateResponse.class);
+
+            return response;
+        } catch (Exception ex) {
+            throw new RemoveTemplateException(parameters, ex);
+        }
+    }
+
+    /**
      * Getting statistics for the certain month
      *
      * @param year year
