@@ -78,6 +78,16 @@ public interface IClient {
     List<MessageSendingResult> sendMessage(String[] phone, String originator, String text) throws MessageSendingResultException;
 
     /**
+     * Send a message
+     * @param phone - Phone number
+     * @param originator - Sender name (one of the approved in your account)
+     * @param text - SMS text
+     * @param sendingTime - An optional parameter, it is used when it is necessary to schedule SMS message
+     * @return results list
+     */
+    List<MessageSendingResult> sendMessage(String[] phone, String originator, String text, String sendingTime) throws MessageSendingResultException;
+
+    /**
      * Search of number in stop list
      * @param phone - Phone number
      * @return stop list
@@ -104,6 +114,14 @@ public interface IClient {
      * @return ID in the template list
      */
     Long addTemplate(String title, String template) throws AddTemplateException;
+
+    /**
+     * Edit a template
+     * @param title - Template name
+     * @param template - Template
+     * @return ID in the template list
+     */
+    Long editTemplate(String title, String template) throws AddTemplateException;
 
     /**
      * Get statistics for a month by days
@@ -141,4 +159,12 @@ public interface IClient {
      * @return list of incoming messages
      */
     List<IncomingMessage> getIncomingMessages(String date) throws IncomingMessageException;
+
+    /**
+     * Get incoming SMS for the period
+     * @param from - Initial date in the format YYYY-MM-DD HH:II:SS
+     * @param to - Finel date in the format YYYY-MM-DD HH:II:SS
+     * @return list of incoming messages
+     */
+    List<IncomingMessage> getIncomingMessages(String from, String to) throws IncomingMessageException;
 }

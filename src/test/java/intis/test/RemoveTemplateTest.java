@@ -23,69 +23,43 @@
  */
 package intis.test;
 
+
 import com.intis.sdk.IntisClient;
-import com.intis.sdk.entity.*;
+import com.intis.sdk.entity.RemoveTemplateResponse;
 import com.intis.sdk.exceptions.*;
 import org.junit.Test;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
-public class MessageSendingResultTest {
+public class RemoveTemplateTest {
 
     private String login = "your api login";
     private String apiKey = "your api key here";
     private String apiHost = "http://api.host.com/get/";
 
     @Test
-    public void sendMessage() throws MessageSendingResultException{
+    public void removeTemplate() throws RemoveTemplateException {
+
         LocalApiConnector connector = new LocalApiConnector(this.getData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
-        String[] phone = {"442073238000", "442073238001"};
-        List<MessageSendingResult> bases = client.sendMessage(phone, "smstest", "test sms");
-
-        for (MessageSendingResult item : bases) {
-            System.out.println(item.getPhone());
-            System.out.println(item.isOk());
-            System.out.println(" - ");
-        }
-        assertTrue(bases.size() > 0);
+        RemoveTemplateResponse template = client.removeTemplate("test1");
+        System.out.println(template.getResult());
+        assertNotNull(template.getResult());
     }
 
-    @Test
-    public void sheduleSendMessage() throws MessageSendingResultException{
-        LocalApiConnector connector = new LocalApiConnector(this.getData());
-        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
-
-        String[] phone = {"442073238000", "442073238001"};
-        List<MessageSendingResult> bases = client.sendMessage(phone, "smstest", "test sms", "2016-08-07 15:30");
-
-        for (MessageSendingResult item : bases) {
-            System.out.println(item.getPhone());
-            System.out.println(item.isOk());
-            System.out.println(" - ");
-        }
-        assertTrue(bases.size() > 0);
-    }
-
-    @Test(expected = MessageSendingResultException.class)
-    public void sendMessageWidthException() throws MessageSendingResultException{
+    @Test(expected = RemoveTemplateException.class)
+    public void removeTemplateWidthException() throws RemoveTemplateException{
         LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
         IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
-
-        String[] phone = {};
-        List<MessageSendingResult> bases = client.sendMessage(phone, "smstest", "test sms");
+        RemoveTemplateResponse template = client.removeTemplate("test1");
     }
 
-    private String getData()
-    {
-        return "{\"442073238000\":{\"error\":\"0\",\"id_sms\":\"4384607771347164730001\",\"cost\":1,\"count_sms\":1,\"sender\":\"smstest\",\"network\":\"Landline\",\"ported\":0},\"442073238000\":{\"error\":31}}";
+    private String getData(){
+        return "{\"result\" : \"deleted\"}";
     }
 
-    private String getErrorData()
-    {
+    private String getErrorData(){
         return "{\"error\":4}";
     }
 }

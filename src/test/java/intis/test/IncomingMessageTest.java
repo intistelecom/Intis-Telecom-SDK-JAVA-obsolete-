@@ -55,6 +55,22 @@ public class IncomingMessageTest {
         assertNotNull(messages);
     }
 
+    @Test
+    public void getIncomingMessagesForPeriod() throws IncomingMessageException {
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost);
+
+        List<IncomingMessage> messages = client.getIncomingMessages("2015-07-02 00:00:00", "2016-08-01 23:00:00");
+        for (IncomingMessage item : messages) {
+            System.out.println("id - " + item.getMessageId());
+            System.out.println("originator - " + item.getOriginator());
+            System.out.println("text - " + item.getText());
+            System.out.println("prefix - " + item.getPrefix());
+            System.out.println("receivedAt - " + item.getReceivedAt());
+        }
+        assertNotNull(messages);
+    }
+
     @Test(expected = IncomingMessageException.class)
     public void getIncomingMessagesWidthException() throws IncomingMessageException{
         LocalApiConnector connector = new LocalApiConnector(this.getErrorData());
