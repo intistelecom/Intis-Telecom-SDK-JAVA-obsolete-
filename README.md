@@ -110,7 +110,8 @@ for (DeliveryStatus item : bases) {
 
 To send a message (to one or several recipients), use the function `sendMessage(phone, originator, text)`,
 where `phone` - is a set of numbers you send your messages to,
-`originator` is a sender’s name and `text` stands for the content of the message.
+`originator` is a sender’s name and `text` stands for the content of the message and
+sendingTime - Example: 2014-05-30 14:06 (an optional parameter, it is used when it is necessary to schedule SMS messages).
 An array includes `MessageSendingSuccess` if the message was successfully sent or `MessageSendingError` in case of failure.
 ```java
 List<MessageSendingResult> bases = client.sendMessage(phone, originator, text);
@@ -160,6 +161,11 @@ for (Template item : templates) {
 To add a new template to a system run the function `addTemplate(title, template)` where `title` is a name of a template, and `template` is the text content of a template
 ```java
 Long id = client.addTemplate(title, text); // return ID user template
+```
+
+To Edit a template to a system run the function `editTemplate(title, template)` where `title` is a name of a template, and `template` is the text content of a template
+```java
+var template = client.editTemplate(title, text); // return ID user template
 ```
 
 To get stats about messages you have sent during a particular month use the function `getDailyStatsByMonth(year, month)` where `year` and `month` - are the particular date you need statistics for.
@@ -254,6 +260,9 @@ network.getTitle(); // Getting operator of subscriber
 Please bear in mind that this method has less accuracy than HLR requests as it uses our internal database to check which mobile operator a phone numbers belongs to.
 
 To get a list of incoming messages please use the function `getIncomingMessages(date)`, where `date` stands for a particular day in YYYY-mm-dd format.
+Or use the function `getIncomingMessages(from, to)`, where 
+from - date of start in the format YYYY-MM-DD HH:II:SS (Example: 2014-05-01 14:06:00) and
+to - date of end in the format YYYY-MM-DD HH:II:SS (Example: 2014-05-30 23:59:59)
 ```java
 List<IncomingMessage> messages = client.getIncomingMessages(data);
 
