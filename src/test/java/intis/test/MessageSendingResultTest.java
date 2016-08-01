@@ -54,6 +54,22 @@ public class MessageSendingResultTest {
         assertTrue(bases.size() > 0);
     }
 
+    @Test
+    public void sheduleSendMessage() throws MessageSendingResultException{
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
+
+        String[] phone = {"442073238000", "442073238001"};
+        List<MessageSendingResult> bases = client.sendMessage(phone, "smstest", "test sms", "2016-08-07 15:30");
+
+        for (MessageSendingResult item : bases) {
+            System.out.println(item.getPhone());
+            System.out.println(item.isOk());
+            System.out.println(" - ");
+        }
+        assertTrue(bases.size() > 0);
+    }
+
     @Test(expected = MessageSendingResultException.class)
     public void sendMessageWidthException() throws MessageSendingResultException{
         LocalApiConnector connector = new LocalApiConnector(this.getErrorData());

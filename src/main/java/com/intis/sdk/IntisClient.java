@@ -32,6 +32,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static java.lang.String.*;
+
 /**
  * Class IntisClient
  * The main class for SMS sending and getting API information
@@ -198,7 +200,7 @@ public class IntisClient extends AClient implements IClient {
      */
     public List<DeliveryStatus> getDeliveryStatus(String[] messageId) throws DeliveryStatusException {
         Map<String, String> parameters = new HashMap<String, String>();
-        parameters.put("state", String.join(",", messageId));
+        parameters.put("state", join(",", messageId));
 
         try {
             String content = getContent("status", parameters);
@@ -235,10 +237,35 @@ public class IntisClient extends AClient implements IClient {
      */
     public List<MessageSendingResult> sendMessage(String[] phone, String originator, String text) throws MessageSendingResultException {
         Map<String, String> parameters = new HashMap<String, String>();
-        parameters.put("phone", String.join(",", phone));
+        parameters.put("phone", join(",", phone));
         parameters.put("sender", originator);
         parameters.put("text", text);
 
+        return querySendMessage(parameters);
+    }
+
+    /**
+     * SMS sending
+     *
+     * @param phone phone number(s)
+     * @param originator sender name
+     * @param text sms text
+     * @param sendingTime an optional parameter, it is used when it is necessary to schedule SMS messages
+     *
+     * @throws MessageSendingResultException
+     * @return results list
+     */
+    public List<MessageSendingResult> sendMessage(String[] phone, String originator, String text, String sendingTime) throws MessageSendingResultException {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("phone", join(",", phone));
+        parameters.put("sender", originator);
+        parameters.put("text", text);
+        parameters.put("sendingTime", sendingTime);
+
+        return querySendMessage(parameters);
+    }
+
+    private List<MessageSendingResult> querySendMessage( Map<String, String> parameters) throws MessageSendingResultException{
         try {
             String content = getContent("send", parameters);
 
@@ -382,6 +409,29 @@ public class IntisClient extends AClient implements IClient {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("name", title);
         parameters.put("text", template);
+
+        return queryAddTemplate(parameters);
+    }
+
+    /**
+     * Edit user template
+     *
+     * @param title template name
+     * @param template text of template
+     *
+     * @throws AddTemplateException
+     * @return ID in the template list
+     */
+    public Long editTemplate(String title, String template) throws AddTemplateException {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("name", title);
+        parameters.put("text", template);
+        parameters.put("override", "1");
+
+        return queryAddTemplate(parameters);
+    }
+
+    private Long queryAddTemplate(Map<String, String> parameters) throws AddTemplateException {
         try {
             String content = getContent("add_template", parameters);
 
@@ -465,7 +515,7 @@ public class IntisClient extends AClient implements IClient {
      */
     public List<HLRResponse> makeHlrRequest(String[] phone) throws HLRResponseException {
         Map<String, String> parameters = new HashMap<String, String>();
-        parameters.put("phone", String.join(",", phone));
+        parameters.put("phone", join(",", phone));
 
         try {
             String content = getContent("hlr", parameters);
@@ -549,6 +599,27 @@ public class IntisClient extends AClient implements IClient {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("date", date);
 
+        return queryIncomingMessages(parameters);
+    }
+
+    /**
+     * Get incoming SMS for the period
+     *
+     * @param from - Initial date in the format YYYY-MM-DD HH:II:SS
+     * @param to - Finel date in the format YYYY-MM-DD HH:II:SS
+     *
+     * @throws IncomingMessageException
+     * @return list of incoming messages
+     */
+    public List<IncomingMessage> getIncomingMessages(String from, String to) throws IncomingMessageException {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("from", from);
+        parameters.put("to", to);
+
+        return queryIncomingMessages(parameters);
+    }
+
+    private List<IncomingMessage> queryIncomingMessages(Map<String, String> parameters) throws IncomingMessageException{
         try {
             String content = getContent("incoming", parameters);
 

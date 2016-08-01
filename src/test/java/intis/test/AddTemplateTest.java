@@ -49,6 +49,17 @@ public class AddTemplateTest {
         assertNotNull(id);
     }
 
+    @Test
+    public void editTemplate() throws AddTemplateException {
+
+        LocalApiConnector connector = new LocalApiConnector(this.getData());
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
+
+        Long id = client.editTemplate("test", "template for [test]");
+        System.out.println(id);
+        assertNotNull(id);
+    }
+
     @Test(expected = AddTemplateException.class)
     public void addTemplateWidthException() throws AddTemplateException{
         LocalApiConnector connector = new LocalApiConnector(this.getErrorData());

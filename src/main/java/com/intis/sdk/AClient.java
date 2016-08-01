@@ -200,7 +200,9 @@ public abstract class AClient {
         if (result.isEmpty()) {
             throw new SDKException(0);
         }
-
+        if (result.equals("[]")){
+            throw  new SDKException(19);
+        }
         String test = result.substring(0, 8);
         if(test.equals("{\"error\"")){
             Map<String, Object> map;
