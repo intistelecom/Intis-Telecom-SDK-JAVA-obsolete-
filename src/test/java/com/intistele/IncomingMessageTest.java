@@ -57,7 +57,7 @@ public class IncomingMessageTest {
     @Test
     public void getIncomingMessagesForPeriod() throws IncomingMessageException {
         LocalApiConnector connector = new LocalApiConnector(this.getData());
-        IntisClient client = new IntisClient(login, apiKey, apiHost);
+        IntisClient client = new IntisClient(login, apiKey, apiHost, connector);
 
         List<IncomingMessage> messages = client.getIncomingMessages("2015-07-02 00:00:00", "2016-08-01 23:00:00");
         for (IncomingMessage item : messages) {
