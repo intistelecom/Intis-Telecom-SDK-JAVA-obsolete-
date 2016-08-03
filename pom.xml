@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.intistele</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.5-SNAPSHOT</version>
 
     <name>Intistele SDK</name>
     <description>SDK library to get connected to the Intistele messaging service</description>
@@ -130,9 +130,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
-
-
 
     </build>
 </project>
