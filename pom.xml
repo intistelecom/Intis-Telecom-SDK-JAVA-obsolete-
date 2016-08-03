@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.intistele</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.6</version>
+    <version>1.7-SNAPSHOT</version>
 
     <name>Intistele SDK</name>
     <description>SDK library to get connected to the Intistele messaging service</description>
@@ -29,7 +29,7 @@
     <scm>
         <connection>scm:git:git@github.com:intistelecom/Inits-Telecom-SDK-JAVA.git</connection>
         <url>https://github.com/intistelecom/Inits-Telecom-SDK-JAVA</url>
-      <tag>sdk-1.6</tag>
+      <tag>sdk-1.0</tag>
   </scm>
 
     <properties>
