@@ -29,6 +29,7 @@ import com.intistele.sdk.exceptions.*;
 
 import java.io.*;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -89,11 +90,10 @@ public abstract class AClient {
      * @return timestamp
      */
     private String getTimestamp(){
-        String url = mApiHost + "timestamp.php";
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Long result = timestamp.getTime();
 
-        String result = apiConnector.getTimestampFromApi(url);
-
-        return result;
+        return result.toString().substring(0, 10);
     }
 
     /**
