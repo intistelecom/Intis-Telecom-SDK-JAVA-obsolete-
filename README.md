@@ -21,6 +21,16 @@ The Intis telecom gateway lets you send SMS messages worldwide via its API. This
 
 To begin using our API please [apply](https://go.intistele.com/external/client/register/) for your account at our website where you can get your login and API key.
 
+Maven dependency
+---------------------------
+```
+<dependency>
+    <groupId>com.intistele</groupId>
+    <artifactId>sdk</artifactId>
+    <version>1.7</version>
+</dependency>
+```
+
 Usage
 ---------------------------
 
