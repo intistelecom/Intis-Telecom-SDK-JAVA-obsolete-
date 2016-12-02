@@ -46,6 +46,9 @@ public class IncomingMessage {
     @JsonProperty("text")
     private String text;
 
+    @JsonProperty("phone")
+    private String destination;
+
     /**
      * @param messageId - Message ID
      */
@@ -86,5 +89,12 @@ public class IncomingMessage {
      */
     public String getText() {
         return text;
+    }
+
+    /**
+     * @return Message destination
+     */
+    public String getDestination(){
+        return destination;
     }
 }

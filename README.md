@@ -281,6 +281,7 @@ for (IncomingMessage item : messages) {
     item.getOriginator();               // Getting sender name of the incoming message
     item.getPrefix();                   // Getting prefix of the incoming message
     item.getReceivedAt();               // Getting date of the incoming message
+    item.getDestination();              // Get message destination
     item.getText();                     // Getting text of the incoming message
 }
 ```

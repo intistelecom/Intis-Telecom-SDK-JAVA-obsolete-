@@ -49,6 +49,7 @@ public class IncomingMessageTest {
             System.out.println("originator - " + item.getOriginator());
             System.out.println("text - " + item.getText());
             System.out.println("prefix - " + item.getPrefix());
+            System.out.println("destination - " + item.getDestination());
             System.out.println("receivedAt - " + item.getReceivedAt());
         }
         assertNotNull(messages);
@@ -65,6 +66,7 @@ public class IncomingMessageTest {
             System.out.println("originator - " + item.getOriginator());
             System.out.println("text - " + item.getText());
             System.out.println("prefix - " + item.getPrefix());
+            System.out.println("destination - " + item.getDestination());
             System.out.println("receivedAt - " + item.getReceivedAt());
         }
         assertNotNull(messages);
@@ -80,7 +82,7 @@ public class IncomingMessageTest {
 
     private String getData()
     {
-        return "{\"75396\":{\"date\":\"2015-04-01 14:01:24\",\"sender\":\"442073238000\",\"prefix\":\"\",\"text\":\"TEST\"},\"75397\":{\"date\":\"2015-04-01 22:31:22\",\"sender\":\"442073238001\",\"prefix\":\"\",\"text\":\"111111111\"},\"75398\":{\"date\":\"2015-04-01 22:37:13\",\"sender\":\"442073238002\",\"prefix\":\"\",\"text\":\"TEST INCOMING\"},\"75399\":{\"date\":\"2015-04-01 22:39:33\",\"sender\":\"442073238003\",\"prefix\":\"\",\"text\":\"2222223\"}}";
+        return "{\"75396\":{\"date\":\"2015-04-01 14:01:24\",\"sender\":\"442073238000\",\"prefix\":\"\",\"text\":\"TEST\",\"phone\":\"5163251632\"},\"75397\":{\"date\":\"2015-04-01 22:31:22\",\"sender\":\"442073238001\",\"prefix\":\"\",\"text\":\"111111111\",\"phone\":\"5163251632\"},\"75398\":{\"date\":\"2015-04-01 22:37:13\",\"sender\":\"442073238002\",\"prefix\":\"\",\"text\":\"TEST INCOMING\",\"phone\":\"5163251632\"},\"75399\":{\"date\":\"2015-04-01 22:39:33\",\"sender\":\"442073238003\",\"prefix\":\"\",\"text\":\"2222223\",\"phone\":\"5163251632\"}}";
     }
 
     private String getErrorData()
